@@ -62,7 +62,7 @@ public class Player_Movement : MonoBehaviour
         else if (_horizontalMove > 0.0f) transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         //Code to Dash
-        if ((Input.GetMouseButtonDown(1) && _canDash) && Time.time > _lastDash + 0.00f)
+        if ((Input.GetButtonDown("Dash")&& _canDash) && Time.time > _lastDash + 0.00f)
         {
             //GetComponent<AudioSource>().PlayOneShot(_dashSound);
             StartCoroutine(Dash());
