@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class TurretController : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class TurretController : MonoBehaviour
     [Header("Shooting")]
     public float fireRate = 1f;
     public float rotationSpeed = 5f;
+    public float switchInterval = 5f;
 
     private Transform target;
     private float fireCountdown = 0f;
+    private float modeTimer;
+    private bool useHomingShot;
 
     void Update()
     {
@@ -20,6 +24,12 @@ public class TurretController : MonoBehaviour
             return;
         }
         RotateTowards(target.position);
+        modeTimer += Time.deltaTime;
+        if (modeTimer >= switchInterval)
+        {
+            useHomingShot = !useHomingShot;
+            modeTimer = 0f;
+        }
         if (fireCountdown <= 0f)
         {
             Shoot();
@@ -57,15 +67,27 @@ public class TurretController : MonoBehaviour
     {
         Vector3 dir = worldPoint - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, angle - 90f), 
-            Time.deltaTime * rotationSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.Euler(0f, 0f, angle - 90f),
+            Time.deltaTime * rotationSpeed
+        );
     }
 
     private void Shoot()
     {
-        Projectile proj = ProjectilePool.Instance.Get();
-        Vector3 spawnPos = transform.position + transform.forward * 1.5f;
-        proj.Initialize(spawnPos, target.position);
+        ProjectilePool pool = ProjectilePool.Instance;
+        if (useHomingShot)
+        {
+            Projectile proj = pool.Get();
+            proj.transform.position = transform.position + transform.up * 1.5f;
+            proj.transform.rotation = transform.rotation;
+            proj.InitializeHoming(target);
+        }
+        else
+        {
+            Projectile proj = pool.Get();
+            Vector3 spawnPos = transform.position + transform.up * 1.5f;
+            proj.InitializeStraight(spawnPos,target.position);
+        }
     }
 
     // VIEW RANGE
