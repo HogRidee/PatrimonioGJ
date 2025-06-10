@@ -223,6 +223,7 @@ MonoBehaviour:
   targetTag: Player
   fireRate: 1
   rotationSpeed: 5
+  switchInterval: 5
 --- !u!1 &229433291
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 229433292}
+  - component: {fileID: 229433293}
   m_Layer: 0
   m_Name: Houses
   m_TagString: Untagged
@@ -261,6 +263,19 @@ Transform:
   - {fileID: 1018314367}
   m_Father: {fileID: 2121417448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229433293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229433291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9ebf923803e2040926327c70b68866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 10
 --- !u!1 &294594411
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &294816467
 Transform:
   m_ObjectHideFlags: 0
@@ -578,6 +593,7 @@ MonoBehaviour:
   targetTag: Player
   fireRate: 1
   rotationSpeed: 5
+  switchInterval: 5
 --- !u!212 &378372738
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -722,7 +738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &614855741
 Transform:
   m_ObjectHideFlags: 0
@@ -1369,7 +1385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1194016435
 Transform:
   m_ObjectHideFlags: 0
@@ -1503,7 +1519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1301000302
 Transform:
   m_ObjectHideFlags: 0
@@ -1941,7 +1957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1486541694
 Transform:
   m_ObjectHideFlags: 0
@@ -2075,7 +2091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1599048275
 Transform:
   m_ObjectHideFlags: 0
@@ -2209,7 +2225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1656471787
 Transform:
   m_ObjectHideFlags: 0
