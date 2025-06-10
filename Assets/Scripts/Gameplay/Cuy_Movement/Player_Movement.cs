@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -8,7 +9,7 @@ public class Player_Movement : MonoBehaviour
 {
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
-
+    private AudioSource _audioSource;
     [Header ("Movement")] 
     [SerializeField] private float Speed;
     [SerializeField] private AudioClip WalkingSound_00;
@@ -33,10 +34,13 @@ public class Player_Movement : MonoBehaviour
     [SerializeField]private float _runSpeedHorizontal = 1f;
     private Vector2 _lastInputDirection = Vector2.right;
     public TrailRenderer TrailRenderer;
+    private float _stepDelay = 0.5f; // Tiempo mínimo entre pasos en segundos
+    private float _nextStepTime = 0f;
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
         _num_Steps = false;
 
     }
@@ -45,19 +49,25 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         //Horizontal Movement
-        /* Animator.SetBool("Running", _horizontalMove != 0.0f);
-        if (_horizontalMove != 0.0f && Grounded)
+        // Animator.SetBool("Running", _horizontalMove != 0.0f);
+        _stepDelay = Mathf.Clamp(1f / Mathf.Abs(_horizontalMove + _verticalMove), 0.1f, 0.5f);
+        if (_horizontalMove != 0.0f || _verticalMove !=0.0f)
         {
             if (!GetComponent<AudioSource>().isPlaying)
             {
-                if (!Num_Steps)
-                    GetComponent<AudioSource>().PlayOneShot(WalkingSound_00);
-                else
-                    GetComponent<AudioSource>().PlayOneShot(WalkingSound_01);
-                Num_Steps = !Num_Steps;
+                if (Time.time >= _nextStepTime) 
+                {
+                    
+                    AudioClip stepSound = _num_Steps ? WalkingSound_01 : WalkingSound_00;
+                    _audioSource.PlayOneShot(stepSound);
+
+                    
+                    _num_Steps = !_num_Steps;
+                    _nextStepTime = Time.time + _stepDelay;
+                }
             }
         }
-        */
+        
         if (_horizontalMove < 0.0f) transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         else if (_horizontalMove > 0.0f) transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
