@@ -66,8 +66,11 @@ public class Projectile : MonoBehaviour
         transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        pool.Release(this);
+        if (other.CompareTag("Player"))
+        {
+            pool.Release(this);
+        }
     }
 }
