@@ -38,7 +38,18 @@ public class HouseControler : MonoBehaviour
         {
             _isPlayerInside = IsPlayerMostlyInside(other);
         }
-     }
+        if (other.GetComponent<Projectile>() != null)
+        {
+            if (_isPlayerInside)
+            {
+                Destroy(other.gameObject);
+            }
+        }
+    }
+    public bool IsDoorOpen()
+    {
+        return !_door.activeSelf;
+    }
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -70,8 +81,15 @@ public class HouseControler : MonoBehaviour
 
     private IEnumerator OpenDoorTemporarily()
     {
+        Player_Movement player = null;
         yield return new WaitForSeconds(0.2f);
+
         _door.SetActive(false);
+        if (_playerTransform != null && IsPlayerMostlyInside(_playerTransform.GetComponent<Collider2D>()))
+        {
+            player = _playerTransform.GetComponent<Player_Movement>();
+            _playerTransform.position = transform.position;
+        }
         yield return new WaitForSeconds(5.0f);
         // Before closing, check if player is partially inside
         //Debug.Log("Esta parcialmente dentro: " + IsPlayerMostlyInside(_playerTransform.GetComponent<Collider2D>()));
@@ -79,7 +97,25 @@ public class HouseControler : MonoBehaviour
         {
             _playerTransform.position = transform.position;
         }
-        _door.SetActive(true);
+        if (IsPlayerMostlyInside(_playerTransform.GetComponent<Collider2D>()))
+        {
+            if (player != null)
+            { 
+                player.MakePowerfull();
+                yield return new WaitForSeconds(3.0f);
+                player.TakeDamage(1);
+                yield return new WaitForSeconds(2.0f);
+                player.TakeDamage(1);
+                yield return new WaitForSeconds(1.0f);
+                player.TakeDamage(1);
+            }
+            _door.SetActive(false);
+        }
+        else 
+        {
+            _door.SetActive(true);
+        }
+        
     }
 
     private bool IsPlayerMostlyInside(Collider2D playerCollider)
