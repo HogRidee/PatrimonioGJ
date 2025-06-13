@@ -92,8 +92,8 @@ public class Player_Movement : MonoBehaviour
             }
         }
         
-        if (_horizontalMove < 0.0f) transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-        else if (_horizontalMove > 0.0f) transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        if (_horizontalMove < 0.0f) transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+        else if (_horizontalMove > 0.0f) transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
         //Code to Dash
         callDash();
