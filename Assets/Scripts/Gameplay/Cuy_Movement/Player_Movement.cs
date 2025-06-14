@@ -24,6 +24,7 @@ public class Player_Movement : MonoBehaviour
     private bool _isIntangible = false;
     [SerializeField] private float _timerPowerUp;
     [SerializeField] private float _multiplySpeedPowerUp;
+    private bool _hasPowerUp = false;
 
     [Header("Dash")]
     [SerializeField] private AudioClip _dashSound;
@@ -63,6 +64,7 @@ public class Player_Movement : MonoBehaviour
     public Vector2 LastInputDirection { get => _lastInputDirection; set => _lastInputDirection = value; }
     public float StepDelay { get => _stepDelay; set => _stepDelay = value; }
     public float NextStepTime { get => _nextStepTime; set => _nextStepTime = value; }
+    public bool HasPowerUp { get => _hasPowerUp; set => _hasPowerUp = value; }
 
     void Start()
     {
@@ -71,7 +73,8 @@ public class Player_Movement : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _num_Steps = false;
-
+        //MakeFaster();
+        //MakeIntangible();
     }
 
     // Update is called once per frame
@@ -102,6 +105,7 @@ public class Player_Movement : MonoBehaviour
 
         //Code to Dash
         callDash();
+     
     }
 
     #region Dash
@@ -136,23 +140,23 @@ public class Player_Movement : MonoBehaviour
 
     #region Health
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<Projectile>() != null)
-        {
-            TakeDamage(1);
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.GetComponent<Projectile>() != null && !_isIntangible)
+        Projectile projectile = collider.GetComponent<Projectile>();
+        if (projectile != null)
         {
-            TakeDamage(1); 
+            if (!_isIntangible)
+            {
+                TakeDamage(1);
+                collider.gameObject.SetActive(false);
+            }
         }
     }
 
+
+
     public void TakeDamage(int damage) {
+        if (_isIntangible) return;
         _health -= damage;
         Debug.Log("Vida: " + _health);
         if (_health <= 0)
@@ -192,19 +196,25 @@ public class Player_Movement : MonoBehaviour
     #region PowerUps
 
     public void MakePowerfull() {
+        if (_hasPowerUp) return;
         int randomIndex = Random.Range(0, 2);
         switch (randomIndex) 
         { 
             case 0:
+                _hasPowerUp = true;
                 MakeIntangible();
+                _hasPowerUp = false;
                 break;
             case 1:
+                _hasPowerUp = true;
                 MakeFaster();
+                _hasPowerUp = false;
                 break;
             default:
                 break;
 
         }
+        
     }
     private void MakeIntangible() {
         Debug.Log("I´m Intangible");
@@ -218,9 +228,12 @@ public class Player_Movement : MonoBehaviour
         Color targetColor = new Color(0f, 0f, 1f, initialColor.a);
         _spriteRenderer.color = targetColor;
         yield return new WaitForSeconds(timer);
-        _spriteRenderer.color = initialColor;
-        _isIntangible = false;
-        
+        if (_isIntangible)
+        {
+            _spriteRenderer.color = initialColor;
+            _isIntangible = false;
+        }
+
     }
 
     private void MakeFaster() {

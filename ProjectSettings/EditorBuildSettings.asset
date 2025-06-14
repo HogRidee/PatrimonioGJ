@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/MainMenu.unity
     guid: 4978ab51a0c0f9e468ea25e8d9cb66b3
+  - enabled: 1
+    path: Assets/Scenes/LeaderBoard/InputName.unity
+    guid: ec6235e0bdcd4a94a89a390ffaaca1f1
+  - enabled: 1
+    path: Assets/Scenes/Test/Cuy_Movement_Test.unity
+    guid: deb1198cd4b65c1448d103eb54035e14
+  - enabled: 1
+    path: Assets/Scenes/LeaderBoard/InputName_Multiplayer.unity
+    guid: 38ff59c11b0f85a46b72c629822db0ec
+  - enabled: 1
+    path: Assets/Scenes/Test/Multiplayer_Cuy_Movement_Test.unity
+    guid: 1ff726cddf00cec48bc807746574a56d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

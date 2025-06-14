@@ -45,7 +45,7 @@ public class OpenDoorControler : MonoBehaviour
         // Llamar a su función OpenDoor()
         if(VerifyDoorsClosed())
             selectedHouse.OpenDoor();
-        Debug.Log($"Puerta abierta en: {selectedHouse.name}");
+        //Debug.Log($"Puerta abierta en: {selectedHouse.name}");
     }
 
     private bool VerifyDoorsClosed() {

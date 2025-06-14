@@ -6,9 +6,11 @@ public class HouseControler : MonoBehaviour
     [SerializeField] private GameObject _door;
     [Range(0.0f, 0.9f)] private float _insidePercentageThreshold = 0.000001f;
     private Collider2D _houseCollider;
-    private bool _isDoorOpening = false;
     private bool _isPlayerInside = false;
     private Transform _playerTransform;
+    private Player_Movement _player = null;
+    private Coroutine _closeDoorCoroutine;
+
     private void Start()
     {
         _houseCollider = GetComponent<Collider2D>();
@@ -16,39 +18,36 @@ public class HouseControler : MonoBehaviour
         {
             _houseCollider.isTrigger = true;
         }
-
-        //if (_door != null)
-        //   _door.SetActive(false);
     }
 
-    public void OpenDoor() {
+    public void OpenDoor()
+    {
         StartCoroutine(OpenDoorTemporarily());
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.CompareTag("Player"))
         {
             _playerTransform = other.transform;
+            _player = other.GetComponent<Player_Movement>();
         }
     }
-    
-     private void OnTriggerStay2D(Collider2D other)
-     {
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
         if (other.CompareTag("Player") && !_isPlayerInside)
         {
             _isPlayerInside = IsPlayerMostlyInside(other);
         }
+
         if (other.GetComponent<Projectile>() != null)
         {
-            if (_isPlayerInside)
+            if (_playerTransform != null && IsPlayerFullyInside(_playerTransform.GetComponent<Collider2D>()))
             {
                 Destroy(other.gameObject);
             }
         }
-    }
-    public bool IsDoorOpen()
-    {
-        return !_door.activeSelf;
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -57,65 +56,84 @@ public class HouseControler : MonoBehaviour
         {
             _isPlayerInside = false;
             _playerTransform = null;
+
+            if (IsDoorOpen())
+            {
+                if (_closeDoorCoroutine != null)
+                    StopCoroutine(_closeDoorCoroutine);
+
+                _closeDoorCoroutine = StartCoroutine(CloseDoorWithDelay(0.3f));
+            }
         }
-    }
-
-    private IEnumerator CloseDoorTemporarily()
-    {
-        if(_isDoorOpening) yield break;
-
-        _isDoorOpening = true;
-
-
-        yield return new WaitForSeconds(0.2f);
-
-        if (_isPlayerInside)
-        {
-            _door.SetActive(true);
-            yield return new WaitForSeconds(5.0f);
-            _door.SetActive(false);
-        }
-
-        _isDoorOpening = false;
     }
 
     private IEnumerator OpenDoorTemporarily()
     {
-        Player_Movement player = null;
+        yield return new WaitForSeconds(0.2f);
+        _door.SetActive(false);
+
+        yield return new WaitForSeconds(4.8f);
+
+        var playerTransform = _playerTransform;
+        var player = _player;
+
+        if (playerTransform == null || player == null)
+        {
+            _door.SetActive(true);
+            yield break;
+        }
+
+        if (IsPlayerMostlyInside(playerTransform.GetComponent<Collider2D>()))
+        {
+            playerTransform.position = transform.position;
+        }
+
         yield return new WaitForSeconds(0.2f);
 
-        _door.SetActive(false);
-        if (_playerTransform != null && IsPlayerMostlyInside(_playerTransform.GetComponent<Collider2D>()))
+        if (playerTransform != null && IsPlayerFullyInside(playerTransform.GetComponent<Collider2D>()))
         {
-            player = _playerTransform.GetComponent<Player_Movement>();
-            _playerTransform.position = transform.position;
-        }
-        yield return new WaitForSeconds(5.0f);
-        // Before closing, check if player is partially inside
-        //Debug.Log("Esta parcialmente dentro: " + IsPlayerMostlyInside(_playerTransform.GetComponent<Collider2D>()));
-        if (_playerTransform != null && IsPlayerMostlyInside(_playerTransform.GetComponent<Collider2D>()))
-        {
-            _playerTransform.position = transform.position;
-        }
-        if (IsPlayerMostlyInside(_playerTransform.GetComponent<Collider2D>()))
-        {
-            if (player != null)
-            { 
+            if(!player.HasPowerUp)
                 player.MakePowerfull();
-                yield return new WaitForSeconds(3.0f);
-                player.TakeDamage(1);
+
+            while (playerTransform != null)
+            {
+                if (!IsPlayerFullyInside(playerTransform.GetComponent<Collider2D>()))
+                    break;
+
+                if (player.GetHealth() <= 0)
+                    break;
+
                 yield return new WaitForSeconds(2.0f);
-                player.TakeDamage(1);
-                yield return new WaitForSeconds(1.0f);
+
+                if (!IsPlayerFullyInside(playerTransform.GetComponent<Collider2D>()))
+                    break;
+
+                Debug.Log("Penalización por quedarse en casa");
                 player.TakeDamage(1);
             }
-            _door.SetActive(false);
         }
-        else 
+        while (playerTransform != null)
+        {
+            if (player.GetHealth() <= 0)
+                break;
+
+            if (!IsPlayerFullyInside(playerTransform.GetComponent<Collider2D>()))
+                break;
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        _door.SetActive(true);
+    }
+
+    private IEnumerator CloseDoorWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (_playerTransform == null || !IsPlayerFullyInside(_playerTransform.GetComponent<Collider2D>()))
         {
             _door.SetActive(true);
         }
-        
     }
 
     private bool IsPlayerMostlyInside(Collider2D playerCollider)
@@ -140,8 +158,7 @@ public class HouseControler : MonoBehaviour
                 pointsInside++;
             }
         }
-        Debug.Log("Porcentaje dentro: " + (float)pointsInside / pointsToCheck.Length);
-        Debug.Log("Porcentaje Threshold: " + _insidePercentageThreshold);
+
         return (float)pointsInside / pointsToCheck.Length >= _insidePercentageThreshold;
     }
 
@@ -155,12 +172,11 @@ public class HouseControler : MonoBehaviour
             playerBounds.max,
             new Vector2(playerBounds.min.x, playerBounds.max.y),
             new Vector2(playerBounds.max.x, playerBounds.min.y),
-            playerCollider.transform.position 
+            playerCollider.transform.position
         };
 
         foreach (Vector2 point in pointsToCheck)
         {
-            Vector2 localPoint = transform.InverseTransformPoint(point);
             if (!_houseCollider.OverlapPoint(point))
             {
                 return false;
@@ -168,5 +184,10 @@ public class HouseControler : MonoBehaviour
         }
 
         return true;
+    }
+
+    public bool IsDoorOpen()
+    {
+        return !_door.activeSelf;
     }
 }

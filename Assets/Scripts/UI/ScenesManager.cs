@@ -4,13 +4,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ScenesManager : MonoBehaviour 
 {
-    public void Play()
+    public void LoadSceneByName(string sceneName)
+    {
+        if (Application.CanStreamedLevelBeLoaded(sceneName))
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            Debug.LogError($"Don´t exist Scene: {sceneName}");
+        }
+    }
+    public void Play_Cuy_Test_01()
     {
         SceneManager.LoadScene(2);
     }
-    public void Controls()
+    public void Play_Cuy_Test_02()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(4);
     }
     public void mainScene()
     {
