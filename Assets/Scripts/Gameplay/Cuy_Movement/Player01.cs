@@ -1,8 +1,10 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player01 : Player_Movement
 {
+    [SerializeField] private Score01 score01;
     protected override void callDash()
     {
         if ((Input.GetButtonDown("Dash01") && this.CanDash && Time.time > this.LastDash + 0.00f))
@@ -22,5 +24,11 @@ public class Player01 : Player_Movement
         }
         if (this.CanMove)
             transform.position += new Vector3(this.HorizontalMove, this.VerticalMove, 0.0f) * Time.fixedDeltaTime * this.RunSpeedHorizontal;
+    }
+
+    protected override void AddPointsScore(int n)
+    {
+        if (score01 != null)
+            score01.AddPoints(n);
     }
 }

@@ -22,6 +22,7 @@ public class Player_Movement : MonoBehaviour
 
     [Header("Power Ups")]
     private bool _isIntangible = false;
+    private bool _isFaster = false;
     [SerializeField] private float _timerPowerUp;
     [SerializeField] private float _multiplySpeedPowerUp;
     private bool _hasPowerUp = false;
@@ -65,6 +66,8 @@ public class Player_Movement : MonoBehaviour
     public float StepDelay { get => _stepDelay; set => _stepDelay = value; }
     public float NextStepTime { get => _nextStepTime; set => _nextStepTime = value; }
     public bool HasPowerUp { get => _hasPowerUp; set => _hasPowerUp = value; }
+    public bool IsIntangible { get => _isIntangible; set => _isIntangible = value; }
+    public bool IsFaster { get => _isFaster; set => _isFaster = value; }
 
     void Start()
     {
@@ -202,11 +205,13 @@ public class Player_Movement : MonoBehaviour
         { 
             case 0:
                 _hasPowerUp = true;
+                AddPointsScore(25);
                 MakeIntangible();
                 _hasPowerUp = false;
                 break;
             case 1:
                 _hasPowerUp = true;
+                AddPointsScore(50);
                 MakeFaster();
                 _hasPowerUp = false;
                 break;
@@ -216,8 +221,12 @@ public class Player_Movement : MonoBehaviour
         }
         
     }
+
+    protected virtual void AddPointsScore(int n) { 
+        
+    }
     private void MakeIntangible() {
-        Debug.Log("I´m Intangible");
+        //Debug.Log("I´m Intangible");
         StartCoroutine(IntangibleCoroutine(_timerPowerUp));
     }
 
@@ -237,11 +246,12 @@ public class Player_Movement : MonoBehaviour
     }
 
     private void MakeFaster() {
-        Debug.Log("I´m faster");
+        //Debug.Log("I´m faster");
         StartCoroutine(FasterCoroutine(_timerPowerUp));
     }
     private IEnumerator FasterCoroutine(float timer)
     {
+        _isFaster = true;
         float initialSpeed = _runSpeedHorizontal;
         Color initialColor = _spriteRenderer.color;
         Color targetColor = new Color(0f, 1f, 0f, initialColor.a);
@@ -250,6 +260,7 @@ public class Player_Movement : MonoBehaviour
         yield return new WaitForSeconds(timer);
         _spriteRenderer.color = initialColor;
         _runSpeedHorizontal = initialSpeed;
+        _isFaster=false;
 
     }
 

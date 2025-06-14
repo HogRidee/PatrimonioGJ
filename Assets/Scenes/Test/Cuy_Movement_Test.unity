@@ -15545,13 +15545,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8465302113452254462, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+    - {fileID: 5025921083684130162, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 9173284532236387693, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
-      insertIndex: 5
+      insertIndex: -1
       addedObject: {fileID: 1281514816}
+    - targetCorrespondingSourceObject: {fileID: 9173284532236387693, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1281514817}
   m_SourcePrefab: {fileID: 100100000, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+--- !u!96 &364643695 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 543278446787997941, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+  m_PrefabInstance: {fileID: 364643694}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &378372736
 GameObject:
   m_ObjectHideFlags: 0
@@ -40964,17 +40973,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1281514817 stripped
+--- !u!114 &1281514817
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5025921083684130162, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
-  m_PrefabInstance: {fileID: 364643694}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281514808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0b47253d046c154ca2bf645fe7da910, type: 3}
+  m_Script: {fileID: 11500000, guid: ec42efdc5ea2486429e216474ea8715c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 4
+  WalkingSound_00: {fileID: 8300000, guid: 010fac5627a9d944989e909633593be7, type: 3}
+  WalkingSound_01: {fileID: 8300000, guid: 51f33b98da844ae499e450c8e82cfda8, type: 3}
+  _health: 3
+  _timerPowerUp: 10
+  _multiplySpeedPowerUp: 1.5
+  _dashSound: {fileID: 8300000, guid: 5e047df947d19934cb92d5788a4077a5, type: 3}
+  _dashingTime: 0.4
+  _dashVelocity: 12
+  _runSpeedHorizontal: 1.8
+  TrailRenderer: {fileID: 364643695}
+  score01: {fileID: 859397780}
 --- !u!1 &1301000301
 GameObject:
   m_ObjectHideFlags: 0
