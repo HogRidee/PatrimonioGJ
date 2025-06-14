@@ -9,8 +9,8 @@ public class Leaderboard : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> _names;
     [SerializeField] private List<TextMeshProUGUI> _scores;
 
-    private string _publibLeaderboardKey = 
-        "10984da475b628159780c45d3dde9e3b62d9993468ebf53c05e5254f80e29838";
+    private string _publibLeaderboardKey =
+        "017cb4012be14247c60716c994d16147f07c2018ca19572e26fa6e5aa8360aea";
 
     private void Start()
     {
@@ -46,20 +46,24 @@ public class Leaderboard : MonoBehaviour
 
     public void SetLeaderboardEntry(string username, int score)
     {
-        Leaderboards.CuySouls.UploadNewEntry(username, score, isSuccesful =>
-        {
-            if(isSuccesful)
-                Debug.Log($"Entrada subida con éxito: {username} - {score}");
-                GetLeaderboard();
-            
-        });
-        LeaderboardCreator.ResetPlayer();
+        Debug.Log($"La entrada es: {username} - {score}");
 
-        //LeaderboardCreator.UploadNewEntry(_publibLeaderboardKey,username,score,((msg) =>
-        //{
-        //if(System.Array.IndexOf(badWords,name)!=-1) return;
-        //Debug.Log($"Entrada subida con éxito: {username} - {score}"); // Se llama solo una vez después de subir la entrada
-        //GetLeaderboard();
-        //}));   
+        // Verificamos que el GUID esté autorizado
+        if (!PlayerPrefs.HasKey("LC_USER_GUID") || string.IsNullOrEmpty(PlayerPrefs.GetString("LC_USER_GUID")))
+        {
+            Debug.LogWarning("No puedes subir score. El jugador no está autorizado.");
+            return;
+        }
+
+        // Esto no es obligatorio si ya usaste SetUserGuid en el bootstrapper,
+        // pero si quieres asegurar, puedes hacerlo aquí de nuevo.
+        //LeaderboardCreator.SetUserGuid(PlayerPrefs.GetString("LC_USER_GUID"));
+
+        LeaderboardCreator.UploadNewEntry(_publibLeaderboardKey, username, score, (msg) =>
+        {
+            //Debug.Log($"Entrada subida con éxito: {username} - {score}");
+            GetLeaderboard();
+        });
+
     }
 }

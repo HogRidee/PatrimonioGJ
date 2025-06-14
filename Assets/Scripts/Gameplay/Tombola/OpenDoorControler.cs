@@ -7,9 +7,8 @@ public class OpenDoorControler : MonoBehaviour
     private float _timer;
     private void Start()
     {
-        // Encontrar todos los objetos HouseController en la escena
         _houseControllers = FindObjectsByType<HouseControler>(FindObjectsSortMode.None);
-        _timer = interval; // Iniciar el timer
+        _timer = interval;
     }
 
     private void Update()
@@ -31,12 +30,12 @@ public class OpenDoorControler : MonoBehaviour
         }
 
         // Filtrar solo los HouseController que tienen puerta cerrada (si es necesario)
-        //var availableHouses = _houseControllers.Where(h => h != null /*&& !h.doorIsOpen*/).ToArray();
+        //var availableHouses = _houseControllers.Where(h => h != null && !h.doorIsOpen).ToArray();
 
         //if (_availableHouses.Length == 0)
         //{
-        //    Debug.Log("Todas las puertas están abiertas o no hay HouseControllers válidos");
-        //    return;
+            //Debug.Log("Todas las puertas están abiertas o no hay HouseControllers válidos");
+            //return;
         //}
 
         // Seleccionar uno aleatorio
@@ -44,8 +43,18 @@ public class OpenDoorControler : MonoBehaviour
         HouseControler selectedHouse = _houseControllers[randomIndex];
 
         // Llamar a su función OpenDoor()
-        selectedHouse.OpenDoor();
-        Debug.Log($"Puerta abierta en: {selectedHouse.name}");
+        if(VerifyDoorsClosed())
+            selectedHouse.OpenDoor();
+        //Debug.Log($"Puerta abierta en: {selectedHouse.name}");
+    }
+
+    private bool VerifyDoorsClosed() {
+        foreach (HouseControler house in _houseControllers) {
+            if (house.IsDoorOpen()) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

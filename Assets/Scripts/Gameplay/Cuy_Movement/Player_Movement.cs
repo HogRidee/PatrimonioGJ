@@ -10,16 +10,22 @@ public class Player_Movement : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
     private AudioSource _audioSource;
+    private SpriteRenderer _spriteRenderer;
     [Header ("Movement")] 
     [SerializeField] private float Speed;
     [SerializeField] private AudioClip WalkingSound_00;
     [SerializeField] private AudioClip WalkingSound_01;
-    [SerializeField] private AudioClip HitSound_00;
     private bool _num_Steps;
 
     [Header("Health")]
     [SerializeField] private int _health;
-    
+
+    [Header("Power Ups")]
+    private bool _isIntangible = false;
+    [SerializeField] private float _timerPowerUp;
+    [SerializeField] private float _multiplySpeedPowerUp;
+    private bool _hasPowerUp = false;
+
     [Header("Dash")]
     [SerializeField] private AudioClip _dashSound;
     [SerializeField] private float _dashingTime;
@@ -44,7 +50,6 @@ public class Player_Movement : MonoBehaviour
     public float Speed1 { get => Speed; set => Speed = value; }
     public AudioClip WalkingSound_001 { get => WalkingSound_00; set => WalkingSound_00 = value; }
     public AudioClip WalkingSound_011 { get => WalkingSound_01; set => WalkingSound_01 = value; }
-    public AudioClip HitSound_001 { get => HitSound_00; set => HitSound_00 = value; }
     public bool Num_Steps { get => _num_Steps; set => _num_Steps = value; }
     public int Health { get => _health; set => _health = value; }
     public AudioClip DashSound { get => _dashSound; set => _dashSound = value; }
@@ -59,14 +64,17 @@ public class Player_Movement : MonoBehaviour
     public Vector2 LastInputDirection { get => _lastInputDirection; set => _lastInputDirection = value; }
     public float StepDelay { get => _stepDelay; set => _stepDelay = value; }
     public float NextStepTime { get => _nextStepTime; set => _nextStepTime = value; }
+    public bool HasPowerUp { get => _hasPowerUp; set => _hasPowerUp = value; }
 
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _num_Steps = false;
-
+        //MakeFaster();
+        //MakeIntangible();
     }
 
     // Update is called once per frame
@@ -97,6 +105,7 @@ public class Player_Movement : MonoBehaviour
 
         //Code to Dash
         callDash();
+     
     }
 
     #region Dash
@@ -130,22 +139,52 @@ public class Player_Movement : MonoBehaviour
     #endregion
 
     #region Health
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        Projectile projectile = collider.GetComponent<Projectile>();
+        if (projectile != null)
+        {
+            if (!_isIntangible)
+            {
+                TakeDamage(1);
+                collider.gameObject.SetActive(false);
+            }
+        }
+    }
+
+
+
+    public void TakeDamage(int damage) {
+        if (_isIntangible) return;
+        _health -= damage;
+        Debug.Log("Vida: " + _health);
+        if (_health <= 0)
+        { 
+            Death(3);
+        }
+    }
     private void Death(float Time_to_Death)
     {
-        //Para que el jugador no se pueda mover al morir
         Player_Movement movementScript = GetComponent<Player_Movement>();
         if (movementScript != null)
         {
             movementScript.enabled = false;
         }
-        //
-        _rigidbody2D.linearVelocity = Vector2.zero;  // Detener cualquier movimiento
-        _rigidbody2D.gravityScale = 0;  // Evitar que la gravedad lo afecte
-        GetComponent<Collider2D>().enabled = false; // Ignorar colisiones
 
+        _rigidbody2D.linearVelocity = Vector2.zero;
 
+        GetComponent<Collider2D>().enabled = false;
+
+        StartCoroutine(DestroyAfterDelay(Time_to_Death));
 
         //_animator.SetBool("Death", true);
+    }
+
+    private IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay); 
+        Destroy(gameObject); 
     }
 
     public int GetHealth()
@@ -154,11 +193,73 @@ public class Player_Movement : MonoBehaviour
     }
     #endregion
 
+    #region PowerUps
 
+    public void MakePowerfull() {
+        if (_hasPowerUp) return;
+        int randomIndex = Random.Range(0, 2);
+        switch (randomIndex) 
+        { 
+            case 0:
+                _hasPowerUp = true;
+                MakeIntangible();
+                _hasPowerUp = false;
+                break;
+            case 1:
+                _hasPowerUp = true;
+                MakeFaster();
+                _hasPowerUp = false;
+                break;
+            default:
+                break;
+
+        }
+        
+    }
+    private void MakeIntangible() {
+        Debug.Log("I´m Intangible");
+        StartCoroutine(IntangibleCoroutine(_timerPowerUp));
+    }
+
+    private IEnumerator IntangibleCoroutine(float timer)
+    {
+        _isIntangible =true;
+        Color initialColor = _spriteRenderer.color;
+        Color targetColor = new Color(0f, 0f, 1f, initialColor.a);
+        _spriteRenderer.color = targetColor;
+        yield return new WaitForSeconds(timer);
+        if (_isIntangible)
+        {
+            _spriteRenderer.color = initialColor;
+            _isIntangible = false;
+        }
+
+    }
+
+    private void MakeFaster() {
+        Debug.Log("I´m faster");
+        StartCoroutine(FasterCoroutine(_timerPowerUp));
+    }
+    private IEnumerator FasterCoroutine(float timer)
+    {
+        float initialSpeed = _runSpeedHorizontal;
+        Color initialColor = _spriteRenderer.color;
+        Color targetColor = new Color(0f, 1f, 0f, initialColor.a);
+        _runSpeedHorizontal = _runSpeedHorizontal * _multiplySpeedPowerUp;
+        _spriteRenderer.color = targetColor;
+        yield return new WaitForSeconds(timer);
+        _spriteRenderer.color = initialColor;
+        _runSpeedHorizontal = initialSpeed;
+
+    }
+
+    #endregion
     private void FixedUpdate()
     {
         Movement();
     }
+
+
 
     protected virtual void Movement() {
         this._horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeedHorizontal;
@@ -172,5 +273,12 @@ public class Player_Movement : MonoBehaviour
             transform.position += new Vector3(_horizontalMove, _verticalMove, 0.0f) * Time.fixedDeltaTime * _runSpeedHorizontal;
     }
 
+    private void OnDestroy()
+    {
+        if (this.gameObject != null)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
 
 }

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - House
+  - Puntaje
+  - Score01
   layers:
   - Default
   - TransparentFX
