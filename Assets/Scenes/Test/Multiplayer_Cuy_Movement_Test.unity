@@ -15152,6 +15152,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2660935770649748282, guid: 599342a5a071376499a5dcb17b1f9afc, type: 3}
+      propertyPath: score02
+      value: 
+      objectReference: {fileID: 1148485314}
+    - target: {fileID: 2660935770649748282, guid: 599342a5a071376499a5dcb17b1f9afc, type: 3}
       propertyPath: _dashSound
       value: 
       objectReference: {fileID: 8300000, guid: 5e047df947d19934cb92d5788a4077a5, type: 3}
@@ -47804,6 +47808,10 @@ PrefabInstance:
       propertyPath: _health
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8508608161597528780, guid: bfcd11184c511a240a30aaa1cf1000e5, type: 3}
+      propertyPath: score01
+      value: 
+      objectReference: {fileID: 859397780}
     - target: {fileID: 8508608161597528780, guid: bfcd11184c511a240a30aaa1cf1000e5, type: 3}
       propertyPath: _dashSound
       value: 
