@@ -1,9 +1,12 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HouseControler : MonoBehaviour
 {
     [SerializeField] private GameObject _door;
+    [SerializeField] private GameObject _star;
+    [SerializeField] private AudioClip _openDoor;
     [Range(0.0f, 0.9f)] private float _insidePercentageThreshold = 0.000001f;
     private Collider2D _houseCollider;
     private bool _isPlayerInside = false;
@@ -22,6 +25,7 @@ public class HouseControler : MonoBehaviour
 
     public void OpenDoor()
     {
+        GetComponent<AudioSource>().PlayOneShot(_openDoor);
         StartCoroutine(OpenDoorTemporarily());
     }
 
@@ -84,7 +88,7 @@ public class HouseControler : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         _door.SetActive(false);
-
+        _star.SetActive(true);
         yield return new WaitForSeconds(4.8f);
 
         var playerTransform = _playerTransform;
@@ -93,6 +97,7 @@ public class HouseControler : MonoBehaviour
         if (playerTransform == null || player == null)
         {
             _door.SetActive(true);
+            _star.SetActive(false);
             yield break;
         }
 
@@ -110,6 +115,7 @@ public class HouseControler : MonoBehaviour
             if (playerTransform != null && IsPlayerFullyInside(playerTransform.GetComponent<Collider2D>()))
             {
                 _door.SetActive(false);
+                _star.SetActive(true);
             }
 
             while (playerTransform != null)
@@ -140,6 +146,7 @@ public class HouseControler : MonoBehaviour
         }
 
         _door.SetActive(true);
+        _star.SetActive(false);
     }
 
     private IEnumerator CloseDoorWithDelay(float delay)
