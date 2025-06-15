@@ -46,6 +46,8 @@ public class Player_Movement : MonoBehaviour
 
     public TrailRenderer TrailRenderer;
 
+    private static readonly int DieHash = Animator.StringToHash("isDead");
+
     public Animator Animator { get => _animator; set => _animator = value; }
     public Rigidbody2D Rigidbody2D { get => _rigidbody2D; set => _rigidbody2D = value; }
     public AudioSource AudioSource { get => _audioSource; set => _audioSource = value; }
@@ -165,7 +167,7 @@ public class Player_Movement : MonoBehaviour
         Debug.Log("Vida: " + _health);
         if (_health <= 0)
         { 
-            Death(3);
+            Death(5);
         }
     }
     private void Death(float Time_to_Death)
@@ -180,9 +182,11 @@ public class Player_Movement : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
 
-        StartCoroutine(DestroyAfterDelay(Time_to_Death));
+        _animator.SetTrigger(DieHash);
 
-        //_animator.SetBool("Death", true);
+        //StartCoroutine(DestroyAfterDelay(Time_to_Death));
+
+       
     }
 
     private IEnumerator DestroyAfterDelay(float delay)
