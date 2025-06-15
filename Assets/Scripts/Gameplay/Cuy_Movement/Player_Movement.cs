@@ -19,6 +19,7 @@ public class Player_Movement : MonoBehaviour
 
     [Header("Health")]
     [SerializeField] private int _health;
+    [SerializeField] private UIHealthDisplay _uiHealth;
 
     [Header("Power Ups")]
     private bool _isIntangible = false;
@@ -161,6 +162,7 @@ public class Player_Movement : MonoBehaviour
     public void TakeDamage(int damage) {
         if (_isIntangible) return;
         _health -= damage;
+        _uiHealth.SetLives(_health);
         Debug.Log("Vida: " + _health);
         if (_health <= 0)
         { 
