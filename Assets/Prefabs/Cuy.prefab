@@ -448,7 +448,7 @@ MonoBehaviour:
   Speed: 4
   WalkingSound_00: {fileID: 0}
   WalkingSound_01: {fileID: 0}
-  _health: 10
+  _health: 3
   _uiHealth: {fileID: 0}
   _timerPowerUp: 0
   _multiplySpeedPowerUp: 0
