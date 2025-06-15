@@ -1,3 +1,4 @@
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -7,90 +8,128 @@ public class TurretController : MonoBehaviour
     public float range = 15f;
     public string targetTag = "Player";
 
+    [Header("Aiming")]
+    public float rotationSpeed = 5f;
+
     [Header("Shooting")]
     public float fireRate = 1f;
-    public float rotationSpeed = 5f;
     public float switchInterval = 5f;
 
+    [Header("Warning")]
+    public GameObject warningPrefab;
+    public float warningTime = 1f;
+    public float warningOffset = 2f;
+
+    [Header("Startup Delay")]
+    public float initialWarningDelay = 3f;
+    private float startupTimer = 0f;
+
+
     private Transform target;
-    private float fireCountdown = 0f;
+    private float fireCountdown;
     private float modeTimer;
     private bool useHomingShot;
 
+    private bool hasWarned;
+    private bool isShootingEnabled;
+
     void Update()
     {
-        UpdateTarget();
-        if (target == null){ 
+        FindTarget();
+        if (target == null) return;
+        RotateTowards(target.position);
+        if (startupTimer < initialWarningDelay)
+        {
+            startupTimer += Time.deltaTime;
             return;
         }
+        FindTarget();
+        if (target == null) return;
         RotateTowards(target.position);
         modeTimer += Time.deltaTime;
         if (modeTimer >= switchInterval)
         {
             useHomingShot = !useHomingShot;
             modeTimer = 0f;
+            hasWarned = false;
+            isShootingEnabled = false;
         }
+        if (!hasWarned)
+        {
+            StartCoroutine(WarningAndEnableShooting());
+            hasWarned = true;
+            return;
+        }
+        if (!isShootingEnabled) return;
+        fireCountdown -= Time.deltaTime;
         if (fireCountdown <= 0f)
         {
-            Shoot();
-            fireCountdown = 1f/fireRate;
+            ShootNow();
+            fireCountdown = 1f / fireRate;
         }
-        fireCountdown -= Time.deltaTime;
     }
 
-    private void UpdateTarget()
+    private IEnumerator WarningAndEnableShooting()
     {
-        // SEARCH FOR NEAREST PLAYER
-        GameObject[] players = GameObject.FindGameObjectsWithTag(targetTag);
-        float shortestDist = Mathf.Infinity;
-        GameObject nearest = null;
-        foreach (GameObject p in players)
+        if (warningPrefab && target != null)
         {
-            float dist = Vector3.Distance(transform.position, p.transform.position);
-            if (dist < shortestDist)
-            {
-                shortestDist = dist;
-                nearest = p;
-            }
+            Vector2 dir = ((Vector2)target.position - (Vector2)transform.position).normalized;
+            Vector3 spawnPos = transform.position + (Vector3)(dir * warningOffset);
+            var warning = Instantiate(warningPrefab, spawnPos, Quaternion.identity);
+            Quaternion baseRot = transform.rotation;
+            float extraZ = dir.x < 0 ? -90f : +90f;
+            warning.transform.rotation = baseRot * Quaternion.Euler(0f, 0f, extraZ);
+            Destroy(warning, warningTime);
         }
-        if (nearest != null && shortestDist <= range)
-        {
-            target = nearest.transform;
-        }
-        else
-        {
-            target = null;
-        }
+        yield return new WaitForSeconds(warningTime);
+        isShootingEnabled = true;
     }
+
 
     private void RotateTowards(Vector3 worldPoint)
     {
         Vector3 dir = worldPoint - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Lerp(transform.rotation,Quaternion.Euler(0f, 0f, angle - 90f),
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, angle - 90f),
             Time.deltaTime * rotationSpeed
         );
     }
 
-    private void Shoot()
+    private void ShootNow()
     {
-        ProjectilePool pool = ProjectilePool.Instance;
+        var pool = ProjectilePool.Instance;
         if (useHomingShot)
         {
-            Projectile proj = pool.Get();
+            var proj = pool.Get();
             proj.transform.position = transform.position + transform.up * 1.5f;
             proj.transform.rotation = transform.rotation;
             proj.InitializeHoming(target);
         }
         else
         {
-            Projectile proj = pool.Get();
+            var proj = pool.Get();
             Vector3 spawnPos = transform.position + transform.up * 1.5f;
-            proj.InitializeStraight(spawnPos,target.position);
+            proj.InitializeStraight(spawnPos, target.position);
         }
     }
 
-    // VIEW RANGE
+    private void FindTarget()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag(targetTag);
+        float shortest = Mathf.Infinity;
+        Transform best = null;
+        foreach (var p in players)
+        {
+            float d = Vector3.Distance(transform.position, p.transform.position);
+            if (d < shortest)
+            {
+                shortest = d;
+                best = p.transform;
+            }
+        }
+        target = (best != null && shortest <= range) ? best : null;
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
