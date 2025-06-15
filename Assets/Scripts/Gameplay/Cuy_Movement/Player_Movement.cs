@@ -19,6 +19,7 @@ public class Player_Movement : MonoBehaviour
 
     [Header("Health")]
     [SerializeField] private int _health;
+    [SerializeField] private UIHealthDisplay _uiHealth;
 
     [Header("Power Ups")]
     private bool _isIntangible = false;
@@ -44,6 +45,8 @@ public class Player_Movement : MonoBehaviour
     private float _nextStepTime = 0f;
 
     public TrailRenderer TrailRenderer;
+
+    private static readonly int DieHash = Animator.StringToHash("isDead");
 
     public Animator Animator { get => _animator; set => _animator = value; }
     public Rigidbody2D Rigidbody2D { get => _rigidbody2D; set => _rigidbody2D = value; }
@@ -84,7 +87,7 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         //Horizontal Movement
-        // Animator.SetBool("Running", _horizontalMove != 0.0f);
+        _animator.SetBool("isRunning", _horizontalMove != 0f || _verticalMove != 0f);
         _stepDelay = Mathf.Clamp(1f / Mathf.Abs(_horizontalMove + _verticalMove), 0.1f, 0.5f);
         if (_horizontalMove != 0.0f || _verticalMove !=0.0f)
         {
@@ -157,14 +160,14 @@ public class Player_Movement : MonoBehaviour
     }
 
 
-
     public void TakeDamage(int damage) {
         if (_isIntangible) return;
         _health -= damage;
+        _uiHealth.SetLives(_health);
         Debug.Log("Vida: " + _health);
         if (_health <= 0)
         { 
-            Death(3);
+            Death(5);
         }
     }
     private void Death(float Time_to_Death)
@@ -179,9 +182,11 @@ public class Player_Movement : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
 
-        StartCoroutine(DestroyAfterDelay(Time_to_Death));
+        _animator.SetTrigger(DieHash);
 
-        //_animator.SetBool("Death", true);
+        //StartCoroutine(DestroyAfterDelay(Time_to_Death));
+
+       
     }
 
     private IEnumerator DestroyAfterDelay(float delay)

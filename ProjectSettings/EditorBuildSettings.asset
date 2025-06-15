@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test/Multiplayer_Cuy_Movement_Test.unity
     guid: 1ff726cddf00cec48bc807746574a56d
+  - enabled: 1
+    path: Assets/Scenes/Test/UITest.unity
+    guid: df1e2eb4a4cdf3845959f50e27edae61
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

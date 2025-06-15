@@ -17,7 +17,7 @@ public class ScenesManager : MonoBehaviour
     }
     public void Play_Cuy_Test_01()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(5);
     }
     public void Play_Cuy_Test_02()
     {

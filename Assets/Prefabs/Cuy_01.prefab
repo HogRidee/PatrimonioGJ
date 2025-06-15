@@ -167,7 +167,7 @@ Animator:
   m_GameObject: {fileID: 81054957285623195}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4cacc343379bdd4aa6d975327731dc7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -291,13 +291,16 @@ MonoBehaviour:
   Speed: 4
   WalkingSound_00: {fileID: 8300000, guid: 010fac5627a9d944989e909633593be7, type: 3}
   WalkingSound_01: {fileID: 8300000, guid: 51f33b98da844ae499e450c8e82cfda8, type: 3}
-  HitSound_00: {fileID: 0}
   _health: 10
+  _uiHealth: {fileID: 0}
+  _timerPowerUp: 0
+  _multiplySpeedPowerUp: 0
   _dashSound: {fileID: 0}
   _dashingTime: 0.4
   _dashVelocity: 12
   _runSpeedHorizontal: 2
   TrailRenderer: {fileID: 5761204331311776206}
+  score01: {fileID: 0}
 --- !u!1 &5945050457444306181
 GameObject:
   m_ObjectHideFlags: 0
