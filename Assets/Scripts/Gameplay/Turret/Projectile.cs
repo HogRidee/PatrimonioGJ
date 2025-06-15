@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
 
     private bool isHoming;
     private Transform target;
-    private Vector3 direction; 
+    private Vector2 direction;  
     private float timer;
 
     public void InitializeHoming(Transform target)
@@ -23,8 +23,9 @@ public class Projectile : MonoBehaviour
         this.target = target;
         isHoming = true;
         timer = 0f;
-        direction = (target.position - transform.position).normalized;
-        transform.up = direction;
+        Vector2 toTarget = (target.position - transform.position).normalized;
+        direction = toTarget;
+        AlignSpriteToDirection();  
         gameObject.SetActive(true);
     }
 
@@ -33,8 +34,8 @@ public class Projectile : MonoBehaviour
         isHoming = false;
         timer = 0f;
         transform.position = startPos;
-        direction = (aimAt - startPos).normalized;
-        transform.up = direction;
+        direction = ((Vector2)aimAt - (Vector2)startPos).normalized;
+        AlignSpriteToDirection();
         gameObject.SetActive(true);
     }
 
@@ -46,31 +47,36 @@ public class Projectile : MonoBehaviour
             pool.Release(this);
             return;
         }
-        if (isHoming)
+        if (isHoming && timer < homingDuration && target != null)
         {
-            if (timer >= homingDuration)
-            {
-                isHoming = false;
-                direction = transform.up;
-            }
-            else if (target != null)
-            {
-                Vector2 currentDir = transform.up;
-                Vector2 desiredDir = ((Vector2)target.position - (Vector2)transform.position).normalized;
-                float angleDiff = Vector2.SignedAngle(currentDir, desiredDir);
-                float maxAngleThisFrame = homingTurnSpeed * Time.deltaTime;
-                float clampedAngle = Mathf.Clamp(angleDiff, -maxAngleThisFrame, maxAngleThisFrame);
-                transform.Rotate(0f, 0f, clampedAngle);
-            }
+            Vector2 desired = ((Vector2)target.position - (Vector2)transform.position).normalized;
+            float angleDiff = Vector2.SignedAngle(direction, desired);
+            float maxAngle = homingTurnSpeed * Time.deltaTime;
+            float clamped = Mathf.Clamp(angleDiff, -maxAngle, maxAngle);
+            float rad = clamped * Mathf.Deg2Rad;
+            float cos = Mathf.Cos(rad), sin = Mathf.Sin(rad);
+            Vector2 newDir = new Vector2(
+                direction.x * cos - direction.y * sin,
+                direction.x * sin + direction.y * cos
+            ).normalized;
+            direction = newDir;
+            AlignSpriteToDirection();
         }
-        transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
+        else if (isHoming && timer >= homingDuration)
+        {
+            isHoming = false;
+        }
+        transform.position += (Vector3)(direction * speed * Time.deltaTime);
+    }
+
+    private void AlignSpriteToDirection()
+    {
+        transform.right = -direction;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             pool.Release(this);
-        }
     }
 }
