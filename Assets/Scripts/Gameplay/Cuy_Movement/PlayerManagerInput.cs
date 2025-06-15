@@ -4,29 +4,42 @@ using UnityEngine.InputSystem.Users;
 using UnityEngine.InputSystem.Utilities;
 public class PlayerManagerInput : MonoBehaviour
 {
-    public PlayerInputManager inputManager;
-    public GameObject[] playerPrefabs;
+    public GameObject player01Prefab;
+    public GameObject player02Prefab;
+    private int playerCount = 0;
 
-    private int playerIndex = 0;
-
-    private void OnEnable()
+    private void Awake()
     {
-        inputManager.onPlayerJoined += OnPlayerJoined;
-    }
-
-    private void OnDisable()
-    {
-        inputManager.onPlayerJoined -= OnPlayerJoined;
+        var manager = GetComponent<PlayerInputManager>();
+        manager.playerPrefab = player01Prefab;
+        manager.onPlayerJoined += OnPlayerJoined;
     }
 
     private void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log("Jugador unido: " + playerInput.playerIndex);
-
-        if (playerIndex < playerPrefabs.Length)
+        if (playerCount == 0)
         {
-            inputManager.playerPrefab = playerPrefabs[playerIndex];
-            playerIndex++;
+            playerInput.gameObject.name = "Player01";
+            playerInput.SwitchCurrentActionMap("Player01");
+
+            if (Gamepad.all.Count == 0)
+                playerInput.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current, Mouse.current);
         }
+        else if (playerCount == 1)
+        {
+            GetComponent<PlayerInputManager>().playerPrefab = player02Prefab;
+
+            playerInput.gameObject.name = "Player02";
+            playerInput.SwitchCurrentActionMap("Player02");
+
+            if (Gamepad.all.Count >= 2)
+                playerInput.SwitchCurrentControlScheme("Gamepad", Gamepad.all[1]);
+            else if (Gamepad.all.Count == 1)
+                playerInput.SwitchCurrentControlScheme("Gamepad", Gamepad.all[0]);
+            else
+                playerInput.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current, Mouse.current);
+        }
+
+        playerCount++;
     }
 }
