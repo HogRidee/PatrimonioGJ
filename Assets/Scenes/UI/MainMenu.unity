@@ -636,8 +636,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 3044897396056791726, guid: 3f284e52d9e5c4c4a82489f0dec3eb63, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -471737973561672446, guid: 9d848b3da26e5ce49954cc943e175307, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a4f5418962f8e844c8b631cb248901f5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1358,8 +1358,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 3044897396056791726, guid: 3f284e52d9e5c4c4a82489f0dec3eb63, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -471737973561672446, guid: 9d848b3da26e5ce49954cc943e175307, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a4f5418962f8e844c8b631cb248901f5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2357659898952462716, guid: 3ac156cf425a556408cebbf0bae5850a, type: 3}
+  m_Sprite: {fileID: -3399365946003298430, guid: cdfcb7ead87a8b343862a6b0550039f0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2166,7 +2166,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2357659898952462716, guid: 3ac156cf425a556408cebbf0bae5850a, type: 3}
+  m_Sprite: {fileID: -3399365946003298430, guid: cdfcb7ead87a8b343862a6b0550039f0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
