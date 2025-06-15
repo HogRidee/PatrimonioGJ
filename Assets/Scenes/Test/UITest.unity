@@ -30832,6 +30832,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 849628572}
+  - component: {fileID: 849628573}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -30861,6 +30862,21 @@ RectTransform:
   m_AnchoredPosition: {x: -754.1, y: -450}
   m_SizeDelta: {x: 337.8, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &849628573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849628571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83b015746970e344b883276065433c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearts: []
+  heartFull: {fileID: 0}
+  heartEmpty: {fileID: 0}
 --- !u!1 &850168783
 GameObject:
   m_ObjectHideFlags: 0
@@ -41330,7 +41346,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.92, y: 1.03}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -41354,6 +41370,7 @@ MonoBehaviour:
   WalkingSound_00: {fileID: 8300000, guid: 010fac5627a9d944989e909633593be7, type: 3}
   WalkingSound_01: {fileID: 8300000, guid: 51f33b98da844ae499e450c8e82cfda8, type: 3}
   _health: 3
+  _uiHealth: {fileID: 849628573}
   _timerPowerUp: 10
   _multiplySpeedPowerUp: 1.5
   _dashSound: {fileID: 8300000, guid: 5e047df947d19934cb92d5788a4077a5, type: 3}

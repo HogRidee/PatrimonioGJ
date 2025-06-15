@@ -85,7 +85,7 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         //Horizontal Movement
-        // Animator.SetBool("Running", _horizontalMove != 0.0f);
+        _animator.SetBool("isRunning", _horizontalMove != 0f || _verticalMove != 0f);
         _stepDelay = Mathf.Clamp(1f / Mathf.Abs(_horizontalMove + _verticalMove), 0.1f, 0.5f);
         if (_horizontalMove != 0.0f || _verticalMove !=0.0f)
         {
@@ -156,7 +156,6 @@ public class Player_Movement : MonoBehaviour
             }
         }
     }
-
 
 
     public void TakeDamage(int damage) {
