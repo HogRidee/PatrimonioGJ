@@ -212,13 +212,11 @@ public class Player_Movement : MonoBehaviour
                 _hasPowerUp = true;
                 AddPointsScore(25);
                 MakeIntangible();
-                _hasPowerUp = false;
                 break;
             case 1:
                 _hasPowerUp = true;
                 AddPointsScore(50);
                 MakeFaster();
-                _hasPowerUp = false;
                 break;
             default:
                 break;
@@ -231,8 +229,10 @@ public class Player_Movement : MonoBehaviour
         
     }
     private void MakeIntangible() {
-        //Debug.Log("I´m Intangible");
+        
+        //if (_hasPowerUp) return;
         StartCoroutine(IntangibleCoroutine(_timerPowerUp));
+        
     }
 
     private IEnumerator IntangibleCoroutine(float timer)
@@ -241,18 +241,24 @@ public class Player_Movement : MonoBehaviour
         Color initialColor = _spriteRenderer.color;
         Color targetColor = new Color(0f, 0f, 1f, initialColor.a);
         _spriteRenderer.color = targetColor;
+        Debug.Log("I´m Intangible");
         yield return new WaitForSeconds(timer);
+        
         if (_isIntangible)
         {
             _spriteRenderer.color = initialColor;
             _isIntangible = false;
+            _hasPowerUp=false;
+            Debug.Log("I´m not Intangible anymore");
         }
 
     }
 
     private void MakeFaster() {
-        //Debug.Log("I´m faster");
+        
+        //if (_hasPowerUp) return;
         StartCoroutine(FasterCoroutine(_timerPowerUp));
+        
     }
     private IEnumerator FasterCoroutine(float timer)
     {
@@ -262,10 +268,14 @@ public class Player_Movement : MonoBehaviour
         Color targetColor = new Color(0f, 1f, 0f, initialColor.a);
         _runSpeedHorizontal = _runSpeedHorizontal * _multiplySpeedPowerUp;
         _spriteRenderer.color = targetColor;
+        Debug.Log("I´m faster");
         yield return new WaitForSeconds(timer);
+        
         _spriteRenderer.color = initialColor;
         _runSpeedHorizontal = initialSpeed;
         _isFaster=false;
+        _hasPowerUp = false;
+        Debug.Log("I´m not faster anymore");
 
     }
 
