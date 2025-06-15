@@ -1,22 +1,37 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class Player01 : Player_Movement
 {
     [SerializeField] private Score01 score01;
+    private Vector2 _movementInput;
+    private bool _dash;
+
+    public void OnMove(InputValue value)
+    {
+        _movementInput = value.Get<Vector2>();
+    }
+
+    public void OnDash(InputValue value)
+    {
+        if (value.isPressed)
+            _dash = true;
+    }
+
     protected override void callDash()
     {
-        if ((Input.GetButtonDown("Dash01") && this.CanDash && Time.time > this.LastDash + 0.00f))
+        if (_dash && this.CanDash && Time.time > this.LastDash + 0.00f)
         {
             GetComponent<AudioSource>().PlayOneShot(this.DashSound);
             StartCoroutine(Dash());
             this.LastDash = Time.time;
         }
+        _dash = false;
     }
     protected override void Movement() {
-        this.HorizontalMove = Input.GetAxisRaw("Horizontal01") * this.RunSpeedHorizontal;
-        this.VerticalMove = Input.GetAxisRaw("Vertical01") * this.RunSpeedHorizontal;
+        this.HorizontalMove = _movementInput.x * this.RunSpeedHorizontal;
+        this.VerticalMove = _movementInput.y * this.RunSpeedHorizontal;
         Vector2 _movementDirection = new Vector2(this.HorizontalMove, this.VerticalMove).normalized;
         if (_movementDirection != Vector2.zero)
         {
