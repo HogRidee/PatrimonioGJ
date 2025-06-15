@@ -10,7 +10,7 @@ public class HouseControler : MonoBehaviour
     private Transform _playerTransform;
     private Player_Movement _player = null;
     private Coroutine _closeDoorCoroutine;
-
+    private bool _powerUpGivenInside = false;
     private void Start()
     {
         _houseCollider = GetComponent<Collider2D>();
@@ -31,16 +31,28 @@ public class HouseControler : MonoBehaviour
         {
             _playerTransform = other.transform;
             _player = other.GetComponent<Player_Movement>();
+            _powerUpGivenInside = false;
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !_isPlayerInside)
+        if (other.CompareTag("Player"))
         {
-            _isPlayerInside = IsPlayerMostlyInside(other);
-        }
+            if (!_isPlayerInside)
+            {
+                _isPlayerInside = IsPlayerMostlyInside(other);
+            }
 
+            if (_playerTransform != null && _player != null)
+            {
+                if (IsPlayerFullyInside(other) && !_player.HasPowerUp && !_powerUpGivenInside)
+                {
+                    _player.MakePowerfull();
+                    _powerUpGivenInside = true; 
+                }
+            }
+        }
         if (other.GetComponent<Projectile>() != null)
         {
             if (_playerTransform != null && IsPlayerFullyInside(_playerTransform.GetComponent<Collider2D>()))
@@ -49,6 +61,7 @@ public class HouseControler : MonoBehaviour
             }
         }
     }
+
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -92,23 +105,26 @@ public class HouseControler : MonoBehaviour
 
         if (playerTransform != null && IsPlayerFullyInside(playerTransform.GetComponent<Collider2D>()))
         {
-            if(!player.HasPowerUp)
-                player.MakePowerfull();
+            //if(!player.HasPowerUp)
+            //   player.MakePowerfull();
+            if (playerTransform != null && IsPlayerFullyInside(playerTransform.GetComponent<Collider2D>()))
+            {
+                _door.SetActive(false);
+            }
 
             while (playerTransform != null)
             {
-                if (!IsPlayerFullyInside(playerTransform.GetComponent<Collider2D>()))
-                    break;
 
                 if (player.GetHealth() <= 0)
+                    break; 
+                if (!IsPlayerFullyInside(playerTransform.GetComponent<Collider2D>()))
                     break;
-
                 yield return new WaitForSeconds(2.0f);
 
                 if (!IsPlayerFullyInside(playerTransform.GetComponent<Collider2D>()))
                     break;
 
-                Debug.Log("Penalización por quedarse en casa");
+                //Debug.Log("Penalización por quedarse en casa");
                 player.TakeDamage(1);
             }
         }
