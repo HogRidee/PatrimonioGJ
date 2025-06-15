@@ -5035,7 +5035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &93397696
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15555,9 +15555,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9173284532236387693, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1281514817}
-    - targetCorrespondingSourceObject: {fileID: 9173284532236387693, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1281514819}
   m_SourcePrefab: {fileID: 100100000, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
 --- !u!96 &364643695 stripped
 TrailRenderer:
@@ -15581,7 +15578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &378372737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41098,36 +41095,6 @@ MonoBehaviour:
   _runSpeedHorizontal: 1.8
   TrailRenderer: {fileID: 364643695}
   score01: {fileID: 859397780}
---- !u!114 &1281514819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281514808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player01
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1301000301
 GameObject:
   m_ObjectHideFlags: 0
