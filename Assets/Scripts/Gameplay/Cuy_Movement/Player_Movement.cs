@@ -46,6 +46,9 @@ public class Player_Movement : MonoBehaviour
     private float _stepDelay = 0.5f; // Tiempo mínimo entre pasos en segundos
     private float _nextStepTime = 0f;
 
+    [Header("UI")]
+    [SerializeField] private GameOver _gameOver;
+
     public TrailRenderer TrailRenderer;
 
     private readonly int DieHash = Animator.StringToHash("isDead");
@@ -198,9 +201,12 @@ public class Player_Movement : MonoBehaviour
 
         _animator.SetTrigger(DieHash);
 
-        //StartCoroutine(DestroyAfterDelay(Time_to_Death));
+        if (_gameOver != null)
+        {
+            _gameOver.ShowGameOver();
+        }
 
-       
+        //StartCoroutine(DestroyAfterDelay(Time_to_Death));
     }
 
     private IEnumerator DestroyAfterDelay(float delay)
