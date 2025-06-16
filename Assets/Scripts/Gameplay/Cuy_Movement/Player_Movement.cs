@@ -206,7 +206,7 @@ public class Player_Movement : MonoBehaviour
 
         if (_gameOver != null)
         {
-            _gameOver.ShowGameOver();
+            UIManager.Instance.NotifyPlayerDeath();
         }
 
         //StartCoroutine(DestroyAfterDelay(Time_to_Death));

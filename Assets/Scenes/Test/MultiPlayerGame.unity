@@ -51515,6 +51515,7 @@ GameObject:
   - component: {fileID: 872218794}
   - component: {fileID: 872218795}
   - component: {fileID: 872218796}
+  - component: {fileID: 872218797}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -51795,6 +51796,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39d4a3d97490f34fa2eedfc9a34eea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &872218797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872218789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e927eb5f7e3b41345b1a341e03b06ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 1701876311}
 --- !u!1 &885622346
 GameObject:
   m_ObjectHideFlags: 0
@@ -77233,7 +77247,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 107.7}
-  m_SizeDelta: {x: 700, y: 105.242}
+  m_SizeDelta: {x: 800, y: 105.242}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1404142380
 MonoBehaviour:
@@ -77282,10 +77296,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 94.2
-  m_fontSizeBase: 171.86
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 200
   m_fontStyle: 0
@@ -83752,7 +83766,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 218.6}
-  m_SizeDelta: {x: 700, y: 105.242}
+  m_SizeDelta: {x: 800, y: 105.242}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1661158807
 MonoBehaviour:
@@ -83801,10 +83815,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 94.2
-  m_fontSizeBase: 171.86
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 200
   m_fontStyle: 0
