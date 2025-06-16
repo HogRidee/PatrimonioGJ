@@ -15,7 +15,7 @@ public class Leaderboard : MonoBehaviour
 
     private void Start()
     {
-        _leaderboard.SetActive(false);
+        //_leaderboard.SetActive(false);
         GetLeaderboard();
     }
 
@@ -43,7 +43,7 @@ public class Leaderboard : MonoBehaviour
                 _names[i].text = msg[i].Username;
                 _scores[i].text = msg[i].Score.ToString();
             }
-            _leaderboard.SetActive(true);
+            //_leaderboard.SetActive(true);
         }));   
     }
 
