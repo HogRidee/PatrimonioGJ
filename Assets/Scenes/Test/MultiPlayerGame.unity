@@ -25747,7 +25747,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3660951880870848639, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -71713,7 +71714,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuy 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3660951880870848639, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
