@@ -12,12 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/LeaderBoard/InputName.unity
     guid: ec6235e0bdcd4a94a89a390ffaaca1f1
   - enabled: 1
+    path: Assets/Scenes/Test/SinglePlayerGame.unity
+    guid: f3bbd3036b852b0449dca53d8b19c2ca
+  - enabled: 0
     path: Assets/Scenes/Test/Cuy_Movement_Test.unity
     guid: deb1198cd4b65c1448d103eb54035e14
   - enabled: 1
     path: Assets/Scenes/LeaderBoard/InputName_Multiplayer.unity
     guid: 38ff59c11b0f85a46b72c629822db0ec
   - enabled: 1
+    path: Assets/Scenes/Test/MultiPlayerGame.unity
+    guid: 31fe48cd16ce6db44b5b91bfbd7695e9
+  - enabled: 0
     path: Assets/Scenes/Test/Multiplayer_Cuy_Movement_Test.unity
     guid: 1ff726cddf00cec48bc807746574a56d
   - enabled: 1

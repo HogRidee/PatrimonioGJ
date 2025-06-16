@@ -26,6 +26,8 @@ public class Player_Movement : MonoBehaviour
     private bool _isFaster = false;
     [SerializeField] private float _timerPowerUp;
     [SerializeField] private float _multiplySpeedPowerUp;
+    [SerializeField] private PowerUpBar _intangibleBar;
+    [SerializeField] private PowerUpBar _fasterBar;
     private bool _hasPowerUp = false;
 
     [Header("Dash")]
@@ -118,7 +120,7 @@ public class Player_Movement : MonoBehaviour
 
     protected virtual void callDash()
     {
-        if ((Input.GetButtonDown("Dash") &&  _canDash && Time.time > _lastDash + 0.00f))
+        if ((Input.GetButtonDown("Dash") &&  _canDash && Time.time > _lastDash + 3.00f))
         {
             GetComponent<AudioSource>().PlayOneShot(_dashSound);
             StartCoroutine(Dash());
@@ -165,9 +167,21 @@ public class Player_Movement : MonoBehaviour
         _health -= damage;
         _uiHealth.SetLives(_health);
         Debug.Log("Vida: " + _health);
+        StartCoroutine(BlinkOnHit());
         if (_health <= 0)
         { 
             Death(5);
+        }
+    }
+
+    private IEnumerator BlinkOnHit(int blinkCount = 3, float blinkSpeed = 0.05f)
+    {
+        for (int i = 0; i < blinkCount; i++)
+        {
+            _spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(blinkSpeed);
+            _spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(blinkSpeed);
         }
     }
     private void Death(float Time_to_Death)
@@ -238,10 +252,11 @@ public class Player_Movement : MonoBehaviour
     private IEnumerator IntangibleCoroutine(float timer)
     {
         _isIntangible =true;
+        _intangibleBar.StartBar(timer);
         Color initialColor = _spriteRenderer.color;
-        Color targetColor = new Color(0f, 0f, 1f, initialColor.a);
+        Color targetColor = new Color(0f, 0.6f, 0.8f, 0.5f);
         _spriteRenderer.color = targetColor;
-        Debug.Log("I´m Intangible");
+        //Debug.Log("I´m Intangible");
         yield return new WaitForSeconds(timer);
         
         if (_isIntangible)
@@ -249,7 +264,7 @@ public class Player_Movement : MonoBehaviour
             _spriteRenderer.color = initialColor;
             _isIntangible = false;
             _hasPowerUp=false;
-            Debug.Log("I´m not Intangible anymore");
+            //Debug.Log("I´m not Intangible anymore");
         }
 
     }
@@ -263,21 +278,35 @@ public class Player_Movement : MonoBehaviour
     private IEnumerator FasterCoroutine(float timer)
     {
         _isFaster = true;
+        _fasterBar.StartBar(timer);
         float initialSpeed = _runSpeedHorizontal;
-        Color initialColor = _spriteRenderer.color;
-        Color targetColor = new Color(0f, 1f, 0f, initialColor.a);
-        _runSpeedHorizontal = _runSpeedHorizontal * _multiplySpeedPowerUp;
-        _spriteRenderer.color = targetColor;
-        Debug.Log("I´m faster");
-        yield return new WaitForSeconds(timer);
-        
-        _spriteRenderer.color = initialColor;
-        _runSpeedHorizontal = initialSpeed;
-        _isFaster=false;
-        _hasPowerUp = false;
-        Debug.Log("I´m not faster anymore");
+        Color originalColor = _spriteRenderer.color;
+        Color blinkColorStrong = new Color(0f, 1f, 0f, 1f);
+        Color blinkColorSoft = new Color(0.5f, 1f, 0.5f, 1f);
 
+        float blinkInterval = 0.1f;
+        float elapsedTime = 0f;
+
+        _runSpeedHorizontal *= _multiplySpeedPowerUp;
+        //Debug.Log("I'm faster");
+
+        while (elapsedTime < timer)
+        {
+            _spriteRenderer.color = blinkColorStrong;
+            yield return new WaitForSeconds(blinkInterval);
+            _spriteRenderer.color = blinkColorSoft;
+            yield return new WaitForSeconds(blinkInterval);
+            elapsedTime += blinkInterval * 2;
+        }
+
+        _runSpeedHorizontal = initialSpeed;
+        _spriteRenderer.color = originalColor;
+        _isFaster = false;
+        _hasPowerUp = false;
+        //Debug.Log("I'm not faster anymore");
     }
+
+
 
     #endregion
     private void FixedUpdate()

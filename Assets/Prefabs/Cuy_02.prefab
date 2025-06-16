@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.83, y: -3.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.61, y: 0.46, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4866290506599800470}
@@ -291,13 +291,18 @@ MonoBehaviour:
   Speed: 4
   WalkingSound_00: {fileID: 8300000, guid: 010fac5627a9d944989e909633593be7, type: 3}
   WalkingSound_01: {fileID: 8300000, guid: 51f33b98da844ae499e450c8e82cfda8, type: 3}
-  HitSound_00: {fileID: 0}
-  _health: 10
-  _dashSound: {fileID: 0}
+  _health: 3
+  _uiHealth: {fileID: 0}
+  _timerPowerUp: 10
+  _multiplySpeedPowerUp: 1.5
+  _intangibleBar: {fileID: 0}
+  _fasterBar: {fileID: 0}
+  _dashSound: {fileID: 8300000, guid: 5e047df947d19934cb92d5788a4077a5, type: 3}
   _dashingTime: 0.4
   _dashVelocity: 12
-  _runSpeedHorizontal: 2
+  _runSpeedHorizontal: 1.8
   TrailRenderer: {fileID: 463957184398954528}
+  score02: {fileID: 0}
 --- !u!1 &8882447162407540887
 GameObject:
   m_ObjectHideFlags: 0
