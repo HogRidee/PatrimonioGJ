@@ -20,7 +20,7 @@ public class Player_Movement : MonoBehaviour
     [Header("Health")]
     [SerializeField] private int _health;
     [SerializeField] private UIHealthDisplay _uiHealth;
-
+    [SerializeField] private AudioClip _damageSound;
     [Header("Power Ups")]
     private bool _isIntangible = false;
     private bool _isFaster = false;
@@ -28,6 +28,8 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float _multiplySpeedPowerUp;
     [SerializeField] private PowerUpBar _intangibleBar;
     [SerializeField] private PowerUpBar _fasterBar;
+    [SerializeField] private AudioClip _it_UFX;
+    [SerializeField] private AudioClip _fs_UFX;
     private bool _hasPowerUp = false;
 
     [Header("Dash")]
@@ -168,6 +170,7 @@ public class Player_Movement : MonoBehaviour
     public void TakeDamage(int damage) {
         if (_isIntangible) return;
         _health -= damage;
+        _audioSource.PlayOneShot(_damageSound);
         _uiHealth.SetLives(_health);
         Debug.Log("Vida: " + _health);
         StartCoroutine(BlinkOnHit());
@@ -249,8 +252,9 @@ public class Player_Movement : MonoBehaviour
         
     }
     private void MakeIntangible() {
-        
+
         //if (_hasPowerUp) return;
+        _audioSource.PlayOneShot(_it_UFX);
         StartCoroutine(IntangibleCoroutine(_timerPowerUp));
         
     }
@@ -276,8 +280,9 @@ public class Player_Movement : MonoBehaviour
     }
 
     private void MakeFaster() {
-        
+
         //if (_hasPowerUp) return;
+        _audioSource.PlayOneShot(_fs_UFX);
         StartCoroutine(FasterCoroutine(_timerPowerUp));
         
     }
