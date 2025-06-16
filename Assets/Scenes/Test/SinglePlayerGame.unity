@@ -25555,6 +25555,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2059877300272969861, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      propertyPath: m_Volume
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: score01
       value: 
@@ -25563,6 +25567,14 @@ PrefabInstance:
       propertyPath: _uiHealth
       value: 
       objectReference: {fileID: 849628573}
+    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      propertyPath: WalkingSound_00
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ca63d5374e1edf4981d082a3dd60ae0, type: 3}
+    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      propertyPath: WalkingSound_01
+      value: 
+      objectReference: {fileID: 8300000, guid: e5a806a1c78cb3646bc5c7c7d019a2b0, type: 3}
     - target: {fileID: 7961964564446115153, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.31
@@ -51145,7 +51157,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 8a5b3e29858b3564dbeeae3c23c89199, type: 3}
   m_Resource: {fileID: 8300000, guid: 8a5b3e29858b3564dbeeae3c23c89199, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0

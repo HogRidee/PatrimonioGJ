@@ -27,6 +27,10 @@ public class ScenesManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public void enterScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void Leaderboard()
     {
