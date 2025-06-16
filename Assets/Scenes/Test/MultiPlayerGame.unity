@@ -25823,6 +25823,14 @@ PrefabInstance:
       value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      propertyPath: _fs_UFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 487dff565b029874e81a6ac9723b4862, type: 3}
+    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      propertyPath: _it_UFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 852d0e1475348ac47b258e8567496feb, type: 3}
+    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: score01
       value: 
       objectReference: {fileID: 859397780}
@@ -25834,6 +25842,10 @@ PrefabInstance:
       propertyPath: _uiHealth
       value: 
       objectReference: {fileID: 849628573}
+    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      propertyPath: _damageSound
+      value: 
+      objectReference: {fileID: 8300000, guid: aa7b951828bda5c4da6c89e68b91316b, type: 3}
     - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: WalkingSound_00
       value: 
@@ -72094,6 +72106,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9113079154316734996, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
+      propertyPath: _fs_UFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 487dff565b029874e81a6ac9723b4862, type: 3}
+    - target: {fileID: 9113079154316734996, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
+      propertyPath: _it_UFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 852d0e1475348ac47b258e8567496feb, type: 3}
+    - target: {fileID: 9113079154316734996, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
       propertyPath: score02
       value: 
       objectReference: {fileID: 1084465195}
@@ -72105,6 +72125,10 @@ PrefabInstance:
       propertyPath: _uiHealth
       value: 
       objectReference: {fileID: 1772805234}
+    - target: {fileID: 9113079154316734996, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
+      propertyPath: _damageSound
+      value: 
+      objectReference: {fileID: 8300000, guid: aa7b951828bda5c4da6c89e68b91316b, type: 3}
     - target: {fileID: 9173284532236387693, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
       propertyPath: m_Name
       value: Cuy 1
