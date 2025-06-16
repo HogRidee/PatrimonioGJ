@@ -48,7 +48,7 @@ public class Player_Movement : MonoBehaviour
 
     public TrailRenderer TrailRenderer;
 
-    private static readonly int DieHash = Animator.StringToHash("isDead");
+    private readonly int DieHash = Animator.StringToHash("isDead");
 
     public Animator Animator { get => _animator; set => _animator = value; }
     public Rigidbody2D Rigidbody2D { get => _rigidbody2D; set => _rigidbody2D = value; }

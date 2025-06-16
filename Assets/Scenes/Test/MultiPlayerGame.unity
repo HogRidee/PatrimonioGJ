@@ -5244,7 +5244,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5263,7 +5263,7 @@ Transform:
   m_GameObject: {fileID: 93397695}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.48, y: 4.32, z: 0}
+  m_LocalPosition: {x: -9.48, y: 5.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5286,7 +5286,7 @@ MonoBehaviour:
   rotationSpeed: 5
   fireRate: 1
   switchInterval: 5
-  warningPrefab: {fileID: 0}
+  warningPrefab: {fileID: 3420528603896712646, guid: d64c6f2740729794b83d7992b383d8bf, type: 3}
   warningTime: 1
   warningOffset: 2
   initialWarningDelay: 3
@@ -25797,7 +25797,7 @@ MonoBehaviour:
   rotationSpeed: 5
   fireRate: 1
   switchInterval: 5
-  warningPrefab: {fileID: 0}
+  warningPrefab: {fileID: 3420528603896712646, guid: d64c6f2740729794b83d7992b383d8bf, type: 3}
   warningTime: 1
   warningOffset: 2
   initialWarningDelay: 3
@@ -25846,7 +25846,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -25865,7 +25865,7 @@ Transform:
   m_GameObject: {fileID: 378372736}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.3, y: 4.53, z: 0}
+  m_LocalPosition: {x: 7.3, y: 5.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71206,6 +71206,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9113079154316734996, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
+      propertyPath: score02
+      value: 
+      objectReference: {fileID: 1084465195}
+    - target: {fileID: 9113079154316734996, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
+      propertyPath: _uiHealth
+      value: 
+      objectReference: {fileID: 1772805234}
     - target: {fileID: 9173284532236387693, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
       propertyPath: m_Name
       value: Cuy 1
