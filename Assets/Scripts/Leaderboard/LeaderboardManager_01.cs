@@ -8,12 +8,14 @@ public class Leaderboard : MonoBehaviour
 {
     [SerializeField] private List<TextMeshProUGUI> _names;
     [SerializeField] private List<TextMeshProUGUI> _scores;
+    [SerializeField] private GameObject _leaderboard;
 
     private string _publibLeaderboardKey =
         "017cb4012be14247c60716c994d16147f07c2018ca19572e26fa6e5aa8360aea";
 
     private void Start()
     {
+        _leaderboard.SetActive(false);
         GetLeaderboard();
     }
 
@@ -41,6 +43,7 @@ public class Leaderboard : MonoBehaviour
                 _names[i].text = msg[i].Username;
                 _scores[i].text = msg[i].Score.ToString();
             }
+            _leaderboard.SetActive(true);
         }));   
     }
 
