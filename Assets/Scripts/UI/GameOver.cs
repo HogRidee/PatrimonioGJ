@@ -7,6 +7,7 @@ public class GameOver : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject darkOverlay;
+    [SerializeField] private GameObject ui;
 
     [Header("Text Copying")]
     [SerializeField] private List<TextMeshProUGUI> sourceScores;
@@ -22,6 +23,7 @@ public class GameOver : MonoBehaviour
 
     public void ShowGameOver()
     {
+        ui.SetActive(true);
         gameOverPanel.SetActive(true);
         darkOverlay.SetActive(true);
         Time.timeScale = 0f;
