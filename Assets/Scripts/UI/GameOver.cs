@@ -1,9 +1,17 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
+    [Header("Panels")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject darkOverlay;
+
+    [Header("Text Copying")]
+    [SerializeField] private List<TextMeshProUGUI> sourceScores;
+
+    [SerializeField] private List<TextMeshProUGUI> targetScores;
 
     private bool isGameOver = false;
 
@@ -14,14 +22,23 @@ public class GameOver : MonoBehaviour
 
     public void ShowGameOver()
     {
-        if (gameOverPanel != null && darkOverlay != null)
+        gameOverPanel.SetActive(true);
+        darkOverlay.SetActive(true);
+        Time.timeScale = 0f;
+        isGameOver = true;
+        int count = Mathf.Min(sourceScores.Count, targetScores.Count);
+        bool multiple = count > 1;
+        for (int i = 0; i < count; i++)
         {
-            gameOverPanel.SetActive(true);
-            darkOverlay.SetActive(true);
-            Time.timeScale = 0f;
-            isGameOver = true;
+            string val = sourceScores[i].text;
+            string prefix;
+            if (multiple)
+                prefix = $"Puntuación jugador {i + 1}";
+            else
+                prefix = "Puntuación";
+            targetScores[i].text = $"{prefix}: {val}";
+            targetScores[i].gameObject.SetActive(true);
         }
-        
     }
 
     public void OnRetry()
