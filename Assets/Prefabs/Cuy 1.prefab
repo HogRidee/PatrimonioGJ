@@ -553,10 +553,10 @@ GameObject:
   - component: {fileID: 7516742065319088759}
   - component: {fileID: 2059877300272969861}
   - component: {fileID: 5569355454818463719}
-  - component: {fileID: 7804160207008952026}
+  - component: {fileID: 9113079154316734996}
   - component: {fileID: 3660951880870848639}
   m_Layer: 0
-  m_Name: Cuy
+  m_Name: Cuy 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -827,7 +827,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7804160207008952026
+--- !u!114 &9113079154316734996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -836,7 +836,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9173284532236387693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec42efdc5ea2486429e216474ea8715c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d902a14026e0fb4bb9613d62a9eed4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 4
@@ -853,7 +853,7 @@ MonoBehaviour:
   _dashVelocity: 8
   _runSpeedHorizontal: 1.8
   TrailRenderer: {fileID: 543278446787997941}
-  score01: {fileID: 0}
+  score02: {fileID: 0}
 --- !u!114 &3660951880870848639
 MonoBehaviour:
   m_ObjectHideFlags: 0
