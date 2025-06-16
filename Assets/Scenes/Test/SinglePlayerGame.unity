@@ -25862,14 +25862,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
-      propertyPath: _fs_UFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 487dff565b029874e81a6ac9723b4862, type: 3}
-    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
-      propertyPath: _it_UFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 852d0e1475348ac47b258e8567496feb, type: 3}
-    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: score01
       value: 
       objectReference: {fileID: 859397780}
@@ -25881,14 +25873,6 @@ PrefabInstance:
       propertyPath: _uiHealth
       value: 
       objectReference: {fileID: 849628573}
-    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
-      propertyPath: _damageSound
-      value: 
-      objectReference: {fileID: 8300000, guid: aa7b951828bda5c4da6c89e68b91316b, type: 3}
-    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
-      propertyPath: _gameOverPanel
-      value: 
-      objectReference: {fileID: 59721217}
     - target: {fileID: 7961964564446115153, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.31
@@ -25933,8 +25917,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuy
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3660951880870848639, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

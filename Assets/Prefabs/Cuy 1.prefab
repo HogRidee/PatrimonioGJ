@@ -553,8 +553,8 @@ GameObject:
   - component: {fileID: 7516742065319088759}
   - component: {fileID: 2059877300272969861}
   - component: {fileID: 5569355454818463719}
+  - component: {fileID: 452490948814826388}
   - component: {fileID: 9113079154316734996}
-  - component: {fileID: 3660951880870848639}
   m_Layer: 0
   m_Name: Cuy 1
   m_TagString: Player
@@ -697,7 +697,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.9
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -788,7 +788,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9173284532236387693}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -827,6 +827,43 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!70 &452490948814826388
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9173284532236387693}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.109523125, y: -0.19568673}
+  m_Size: {x: 1.1189384, y: 0.51737916}
+  m_Direction: 1
 --- !u!114 &9113079154316734996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,43 +881,17 @@ MonoBehaviour:
   WalkingSound_01: {fileID: 8300000, guid: 51f33b98da844ae499e450c8e82cfda8, type: 3}
   _health: 3
   _uiHealth: {fileID: 0}
+  _damageSound: {fileID: 8300000, guid: aa7b951828bda5c4da6c89e68b91316b, type: 3}
   _timerPowerUp: 10
   _multiplySpeedPowerUp: 1.5
   _intangibleBar: {fileID: 2313170396215982204}
   _fasterBar: {fileID: 6066785199775023720}
+  _it_UFX: {fileID: 8300000, guid: 852d0e1475348ac47b258e8567496feb, type: 3}
+  _fs_UFX: {fileID: 8300000, guid: 487dff565b029874e81a6ac9723b4862, type: 3}
   _dashSound: {fileID: 8300000, guid: 5e047df947d19934cb92d5788a4077a5, type: 3}
   _dashingTime: 0.4
   _dashVelocity: 8
   _runSpeedHorizontal: 1.8
+  _gameOver: {fileID: 0}
   TrailRenderer: {fileID: 543278446787997941}
   score02: {fileID: 0}
---- !u!114 &3660951880870848639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9173284532236387693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player01
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
