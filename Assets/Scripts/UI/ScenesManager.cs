@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ScenesManager : MonoBehaviour 
 {
+    /*
     public void LoadSceneByName(string sceneName)
     {
         if (Application.CanStreamedLevelBeLoaded(sceneName))
@@ -14,6 +15,12 @@ public class ScenesManager : MonoBehaviour
         {
             Debug.LogError($"Don´t exist Scene: {sceneName}");
         }
+    }
+    */
+
+    private void Start()
+    {
+        Debug.Log("El tiempo es: " + Time.timeScale);
     }
     public void Play_Cuy_Test_01()
     {
