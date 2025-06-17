@@ -14,7 +14,6 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] private List<TextMeshProUGUI> targetScores;
 
-    private bool isGameOver = false;
 
     public void BackToMainMenu()
     {
@@ -23,11 +22,9 @@ public class GameOver : MonoBehaviour
 
     public void ShowGameOver()
     {
-        ui.SetActive(true);
         gameOverPanel.SetActive(true);
         darkOverlay.SetActive(true);
         Time.timeScale = 0f;
-        isGameOver = true;
         int count = Mathf.Min(sourceScores.Count, targetScores.Count);
         bool multiple = count > 1;
         for (int i = 0; i < count; i++)
@@ -48,7 +45,6 @@ public class GameOver : MonoBehaviour
         darkOverlay.SetActive(false);
         gameOverPanel.SetActive(false);
         Time.timeScale = 1f;
-        isGameOver = false;
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
         );
