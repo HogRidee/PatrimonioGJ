@@ -5291,12 +5291,12 @@ MonoBehaviour:
   warningTime: 1
   warningOffset: 2
   audioClips:
-  - {fileID: 8300000, guid: 8510823e01ee7764fbda398c04ecade1, type: 3}
-  - {fileID: 8300000, guid: 9926bd279a20207419cfcb29026bd194, type: 3}
-  - {fileID: 8300000, guid: 2e606ed97d66ed74391e65a262deda64, type: 3}
-  - {fileID: 8300000, guid: e292d6e0dad152f4a90e399afeb6cf87, type: 3}
-  - {fileID: 8300000, guid: ea88487e665a47c4486cac2e578bbc07, type: 3}
-  - {fileID: 8300000, guid: 330a33d25a3d86247889be243fbfca9a, type: 3}
+  - {fileID: 8300000, guid: 7901963c306db5f43b99153b0e295562, type: 3}
+  - {fileID: 8300000, guid: 6a46a9f7a6224304790a13b8b11b8e75, type: 3}
+  - {fileID: 8300000, guid: 8958bcb561a79ee418818165320b71ea, type: 3}
+  - {fileID: 8300000, guid: a965a31be3514c74a81ec27e9e49c8e9, type: 3}
+  - {fileID: 8300000, guid: 2140251b227d40e4b81d5fe94c49302e, type: 3}
+  - {fileID: 8300000, guid: 8817382e021a2644692324bb0c5fd5e8, type: 3}
   initialWarningDelay: 3
 --- !u!82 &93397699
 AudioSource:
@@ -5355,7 +5355,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -26024,12 +26024,12 @@ MonoBehaviour:
   warningTime: 1
   warningOffset: 2
   audioClips:
-  - {fileID: 8300000, guid: 8510823e01ee7764fbda398c04ecade1, type: 3}
-  - {fileID: 8300000, guid: 9926bd279a20207419cfcb29026bd194, type: 3}
-  - {fileID: 8300000, guid: 2e606ed97d66ed74391e65a262deda64, type: 3}
-  - {fileID: 8300000, guid: e292d6e0dad152f4a90e399afeb6cf87, type: 3}
-  - {fileID: 8300000, guid: ea88487e665a47c4486cac2e578bbc07, type: 3}
-  - {fileID: 8300000, guid: 330a33d25a3d86247889be243fbfca9a, type: 3}
+  - {fileID: 8300000, guid: 7901963c306db5f43b99153b0e295562, type: 3}
+  - {fileID: 8300000, guid: 6a46a9f7a6224304790a13b8b11b8e75, type: 3}
+  - {fileID: 8300000, guid: 8958bcb561a79ee418818165320b71ea, type: 3}
+  - {fileID: 8300000, guid: a965a31be3514c74a81ec27e9e49c8e9, type: 3}
+  - {fileID: 8300000, guid: 2140251b227d40e4b81d5fe94c49302e, type: 3}
+  - {fileID: 8300000, guid: 8817382e021a2644692324bb0c5fd5e8, type: 3}
   initialWarningDelay: 3
 --- !u!212 &378372738
 SpriteRenderer:
@@ -26158,7 +26158,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
