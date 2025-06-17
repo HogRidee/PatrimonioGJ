@@ -209,7 +209,7 @@ public class Player_Movement : MonoBehaviour
             UIManager.Instance.NotifyPlayerDeath();
         }
 
-        //StartCoroutine(DestroyAfterDelay(Time_to_Death));
+        StartCoroutine(DestroyAfterDelay(1.6f));
     }
 
     private IEnumerator DestroyAfterDelay(float delay)
