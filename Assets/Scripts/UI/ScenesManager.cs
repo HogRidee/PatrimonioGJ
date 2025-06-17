@@ -30,6 +30,11 @@ public class ScenesManager : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
+    public void Play_CinematicScene01()
+    {
+        SceneManager.LoadScene(7);
+    }
+
     public void mainScene()
     {
         SceneManager.LoadScene(1);

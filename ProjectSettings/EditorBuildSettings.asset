@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LeaderBoard/LeaderBoard.unity
     guid: 9b1c295174feb27478223ecae9e8ebb8
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Cuy.unity
+    guid: d72096a4693ef8f49a2500e5cddf54c5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

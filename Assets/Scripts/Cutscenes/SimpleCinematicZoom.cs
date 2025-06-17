@@ -30,6 +30,6 @@ public class SimpleCinematicZoom : MonoBehaviour
             target.localScale = Vector3.Lerp(startScale, endScale, alpha);
             yield return null;
         }
-        SceneManager.LoadScene(nextSceneName);
+        SceneManager.LoadScene(2);
     }
 }

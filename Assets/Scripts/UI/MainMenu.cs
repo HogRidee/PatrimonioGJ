@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene(7);
+        SceneManager.LoadScene(1);
     }
     public void PlayGameMultiplayer()
     {

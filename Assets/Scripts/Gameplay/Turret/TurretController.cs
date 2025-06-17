@@ -19,11 +19,11 @@ public class TurretController : MonoBehaviour
     public GameObject warningPrefab;
     public float warningTime = 1f;
     public float warningOffset = 2f;
-
+    [SerializeField] private AudioClip _warningSound;
     [Header("Startup Delay")]
     public float initialWarningDelay = 3f;
     private float startupTimer = 0f;
-
+    private AudioSource _audioSource;
 
     private Transform target;
     private float fireCountdown;
@@ -32,7 +32,10 @@ public class TurretController : MonoBehaviour
 
     private bool hasWarned;
     private bool isShootingEnabled;
-
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
     void Update()
     {
         FindTarget();
@@ -81,6 +84,7 @@ public class TurretController : MonoBehaviour
             warning.transform.rotation = baseRot * Quaternion.Euler(0f, 0f, extraZ);
             Destroy(warning, warningTime);
         }
+        _audioSource.PlayOneShot(_warningSound);
         yield return new WaitForSeconds(warningTime);
         isShootingEnabled = true;
     }
