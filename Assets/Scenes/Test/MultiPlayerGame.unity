@@ -5290,7 +5290,13 @@ MonoBehaviour:
   warningPrefab: {fileID: 3420528603896712646, guid: d64c6f2740729794b83d7992b383d8bf, type: 3}
   warningTime: 1
   warningOffset: 2
-  _warningSound: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 7901963c306db5f43b99153b0e295562, type: 3}
+  - {fileID: 8300000, guid: 6a46a9f7a6224304790a13b8b11b8e75, type: 3}
+  - {fileID: 8300000, guid: 8958bcb561a79ee418818165320b71ea, type: 3}
+  - {fileID: 8300000, guid: a965a31be3514c74a81ec27e9e49c8e9, type: 3}
+  - {fileID: 8300000, guid: 2140251b227d40e4b81d5fe94c49302e, type: 3}
+  - {fileID: 8300000, guid: 8817382e021a2644692324bb0c5fd5e8, type: 3}
   initialWarningDelay: 3
 --- !u!82 &93397699
 AudioSource:
@@ -5349,7 +5355,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -26017,7 +26023,13 @@ MonoBehaviour:
   warningPrefab: {fileID: 3420528603896712646, guid: d64c6f2740729794b83d7992b383d8bf, type: 3}
   warningTime: 1
   warningOffset: 2
-  _warningSound: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: 7901963c306db5f43b99153b0e295562, type: 3}
+  - {fileID: 8300000, guid: 6a46a9f7a6224304790a13b8b11b8e75, type: 3}
+  - {fileID: 8300000, guid: 8958bcb561a79ee418818165320b71ea, type: 3}
+  - {fileID: 8300000, guid: a965a31be3514c74a81ec27e9e49c8e9, type: 3}
+  - {fileID: 8300000, guid: 2140251b227d40e4b81d5fe94c49302e, type: 3}
+  - {fileID: 8300000, guid: 8817382e021a2644692324bb0c5fd5e8, type: 3}
   initialWarningDelay: 3
 --- !u!212 &378372738
 SpriteRenderer:
@@ -26146,7 +26158,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

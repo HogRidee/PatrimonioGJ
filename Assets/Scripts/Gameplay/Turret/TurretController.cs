@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -19,7 +20,7 @@ public class TurretController : MonoBehaviour
     public GameObject warningPrefab;
     public float warningTime = 1f;
     public float warningOffset = 2f;
-    [SerializeField] private AudioClip _warningSound;
+    [SerializeField] List<AudioClip> audioClips;
     [Header("Startup Delay")]
     public float initialWarningDelay = 3f;
     private float startupTimer = 0f;
@@ -84,7 +85,15 @@ public class TurretController : MonoBehaviour
             warning.transform.rotation = baseRot * Quaternion.Euler(0f, 0f, extraZ);
             Destroy(warning, warningTime);
         }
-        _audioSource.PlayOneShot(_warningSound);
+        if (audioClips != null && audioClips.Count > 0)
+        {
+            int randomIndex = Random.Range(0, audioClips.Count);
+            _audioSource.PlayOneShot(audioClips[randomIndex]);
+        }
+        else
+        {
+            Debug.LogWarning("La lista de audioClips está vacía o no asignada.");
+        }
         yield return new WaitForSeconds(warningTime);
         isShootingEnabled = true;
     }
