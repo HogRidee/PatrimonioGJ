@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,6 +15,17 @@ public class HouseControler : MonoBehaviour
     private Player_Movement _player = null;
     private Coroutine _closeDoorCoroutine;
     private bool _powerUpGivenInside = false;
+
+    [Header("Score")]
+    Dictionary<int, GameObject> scorePrefabs = new Dictionary<int, GameObject>();
+    [SerializeField] private GameObject _25Score;
+    [SerializeField] private GameObject _50Score;
+
+    private void Awake()
+    {
+        scorePrefabs[25] = _25Score;
+        scorePrefabs[50] = _50Score;
+    }
     private void Start()
     {
         _houseCollider = GetComponent<Collider2D>();
@@ -41,6 +53,7 @@ public class HouseControler : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        int scoreValue = 0;
         if (other.CompareTag("Player"))
         {
             if (!_isPlayerInside)
@@ -52,8 +65,13 @@ public class HouseControler : MonoBehaviour
             {
                 if (IsPlayerFullyInside(other) && !_player.HasPowerUp && !_powerUpGivenInside)
                 {
-                    _player.MakePowerfull();
+                    scoreValue = _player.MakePowerfull();
                     _powerUpGivenInside = true; 
+                    if (scoreValue > 0 && scorePrefabs.ContainsKey(scoreValue))
+                    {
+                        Vector3 spawnPos = _playerTransform.position + Vector3.up * 1f;
+                        Instantiate(scorePrefabs[scoreValue], spawnPos, Quaternion.identity);
+                    }
                 }
             }
         }
