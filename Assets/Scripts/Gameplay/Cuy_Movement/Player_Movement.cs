@@ -226,8 +226,8 @@ public class Player_Movement : MonoBehaviour
 
     #region PowerUps
 
-    public void MakePowerfull() {
-        if (_hasPowerUp) return;
+    public int MakePowerfull() {
+        if (_hasPowerUp) return -1;
         int randomIndex = Random.Range(0, 2);
         switch (randomIndex) 
         { 
@@ -235,14 +235,14 @@ public class Player_Movement : MonoBehaviour
                 _hasPowerUp = true;
                 AddPointsScore(25);
                 MakeIntangible();
-                break;
+                return 25;
             case 1:
                 _hasPowerUp = true;
                 AddPointsScore(50);
                 MakeFaster();
-                break;
+                return 50;
             default:
-                break;
+                return -1;
 
         }
         

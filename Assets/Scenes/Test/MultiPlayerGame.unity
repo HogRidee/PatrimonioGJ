@@ -15248,6 +15248,8 @@ MonoBehaviour:
   _door: {fileID: 187284840}
   _star: {fileID: 1587597307}
   _openDoor: {fileID: 8300000, guid: f498c728b01e83e42847e4edc839bcc2, type: 3}
+  _25Score: {fileID: 6466682967882244711, guid: 5dc7fee7ca2f1034b97f54a778721a3d, type: 3}
+  _50Score: {fileID: 408652465017626586, guid: de221823f808117469e9518c0a2567b7, type: 3}
 --- !u!61 &190149570
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20510,6 +20512,8 @@ MonoBehaviour:
   _door: {fileID: 1194016434}
   _star: {fileID: 1271759196}
   _openDoor: {fileID: 8300000, guid: f498c728b01e83e42847e4edc839bcc2, type: 3}
+  _25Score: {fileID: 6466682967882244711, guid: 5dc7fee7ca2f1034b97f54a778721a3d, type: 3}
+  _50Score: {fileID: 408652465017626586, guid: de221823f808117469e9518c0a2567b7, type: 3}
 --- !u!61 &294594414
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25830,11 +25834,11 @@ PrefabInstance:
     - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: _fs_UFX
       value: 
-      objectReference: {fileID: 8300000, guid: 487dff565b029874e81a6ac9723b4862, type: 3}
+      objectReference: {fileID: 8300000, guid: c5c334122e9b52d47808bb53db9981e7, type: 3}
     - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: _it_UFX
       value: 
-      objectReference: {fileID: 8300000, guid: 852d0e1475348ac47b258e8567496feb, type: 3}
+      objectReference: {fileID: 8300000, guid: 62104aec43f79eb4b8a353cb75086614, type: 3}
     - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: score01
       value: 
@@ -51548,6 +51552,8 @@ MonoBehaviour:
   _door: {fileID: 1656471786}
   _star: {fileID: 268045856}
   _openDoor: {fileID: 8300000, guid: f498c728b01e83e42847e4edc839bcc2, type: 3}
+  _25Score: {fileID: 6466682967882244711, guid: 5dc7fee7ca2f1034b97f54a778721a3d, type: 3}
+  _50Score: {fileID: 408652465017626586, guid: de221823f808117469e9518c0a2567b7, type: 3}
 --- !u!61 &850168786
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51959,7 +51965,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 8a5b3e29858b3564dbeeae3c23c89199, type: 3}
   m_Resource: {fileID: 8300000, guid: 8a5b3e29858b3564dbeeae3c23c89199, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.35
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -71527,6 +71533,8 @@ MonoBehaviour:
   _door: {fileID: 614855740}
   _star: {fileID: 2066849696}
   _openDoor: {fileID: 8300000, guid: f498c728b01e83e42847e4edc839bcc2, type: 3}
+  _25Score: {fileID: 6466682967882244711, guid: 5dc7fee7ca2f1034b97f54a778721a3d, type: 3}
+  _50Score: {fileID: 408652465017626586, guid: de221823f808117469e9518c0a2567b7, type: 3}
 --- !u!61 &1018314369
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -71955,6 +71963,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9113079154316734996, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
+      propertyPath: _fs_UFX
+      value: 
+      objectReference: {fileID: 8300000, guid: c5c334122e9b52d47808bb53db9981e7, type: 3}
+    - target: {fileID: 9113079154316734996, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
+      propertyPath: _it_UFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 62104aec43f79eb4b8a353cb75086614, type: 3}
     - target: {fileID: 9113079154316734996, guid: 3980170967718fd4ab19693f83ddb5cf, type: 3}
       propertyPath: score02
       value: 
@@ -77935,6 +77951,8 @@ MonoBehaviour:
   _door: {fileID: 1301000301}
   _star: {fileID: 1006350234}
   _openDoor: {fileID: 8300000, guid: f498c728b01e83e42847e4edc839bcc2, type: 3}
+  _25Score: {fileID: 6466682967882244711, guid: 5dc7fee7ca2f1034b97f54a778721a3d, type: 3}
+  _50Score: {fileID: 408652465017626586, guid: de221823f808117469e9518c0a2567b7, type: 3}
 --- !u!61 &1421902053
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -78395,6 +78413,8 @@ MonoBehaviour:
   _door: {fileID: 843925309}
   _star: {fileID: 330981651}
   _openDoor: {fileID: 8300000, guid: f498c728b01e83e42847e4edc839bcc2, type: 3}
+  _25Score: {fileID: 6466682967882244711, guid: 5dc7fee7ca2f1034b97f54a778721a3d, type: 3}
+  _50Score: {fileID: 408652465017626586, guid: de221823f808117469e9518c0a2567b7, type: 3}
 --- !u!61 &1563043355
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -94411,6 +94431,8 @@ MonoBehaviour:
   _door: {fileID: 1599048274}
   _star: {fileID: 1774182779}
   _openDoor: {fileID: 8300000, guid: f498c728b01e83e42847e4edc839bcc2, type: 3}
+  _25Score: {fileID: 6466682967882244711, guid: 5dc7fee7ca2f1034b97f54a778721a3d, type: 3}
+  _50Score: {fileID: 408652465017626586, guid: de221823f808117469e9518c0a2567b7, type: 3}
 --- !u!61 &1923288590
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -94716,6 +94738,8 @@ MonoBehaviour:
   _door: {fileID: 1486541693}
   _star: {fileID: 42991016}
   _openDoor: {fileID: 8300000, guid: f498c728b01e83e42847e4edc839bcc2, type: 3}
+  _25Score: {fileID: 6466682967882244711, guid: 5dc7fee7ca2f1034b97f54a778721a3d, type: 3}
+  _50Score: {fileID: 408652465017626586, guid: de221823f808117469e9518c0a2567b7, type: 3}
 --- !u!61 &1928729077
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -94999,6 +95023,8 @@ MonoBehaviour:
   _door: {fileID: 294816466}
   _star: {fileID: 585833873}
   _openDoor: {fileID: 8300000, guid: f498c728b01e83e42847e4edc839bcc2, type: 3}
+  _25Score: {fileID: 6466682967882244711, guid: 5dc7fee7ca2f1034b97f54a778721a3d, type: 3}
+  _50Score: {fileID: 408652465017626586, guid: de221823f808117469e9518c0a2567b7, type: 3}
 --- !u!61 &2074807744
 BoxCollider2D:
   m_ObjectHideFlags: 0
