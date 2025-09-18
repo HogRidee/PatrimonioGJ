@@ -25,7 +25,7 @@ public class Player02 : Player_Movement
             this.LastInputDirection = _movementDirection;
         }
         if (this.CanMove)
-            transform.position += new Vector3(this.HorizontalMove, this.VerticalMove, 0.0f) * Time.fixedDeltaTime * this.RunSpeedHorizontal;
+            base._rigidbody2D.linearVelocity = _movementDirection * this.RunSpeedHorizontal;
     }
 
     protected override void AddPointsScore(int n)

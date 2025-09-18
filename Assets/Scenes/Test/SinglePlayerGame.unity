@@ -5349,7 +5349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &93397696
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26023,6 +26023,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      propertyPath: Speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: _fs_UFX
       value: 
       objectReference: {fileID: 8300000, guid: c5c334122e9b52d47808bb53db9981e7, type: 3}
@@ -26042,6 +26046,18 @@ PrefabInstance:
       propertyPath: _uiHealth
       value: 
       objectReference: {fileID: 849628573}
+    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      propertyPath: _dashVelocity
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      propertyPath: _runSpeedHorizontal
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
+      propertyPath: _multiplySpeedPowerUp
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7961964564446115153, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.31
@@ -26184,7 +26200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &378372737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94438,6 +94454,7 @@ GameObject:
   - component: {fileID: 2121417447}
   - component: {fileID: 2121417450}
   - component: {fileID: 2121417449}
+  - component: {fileID: 2121417451}
   m_Layer: 0
   m_Name: Tombola
   m_TagString: Untagged
@@ -94729,6 +94746,33 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!50 &2121417451
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121417446}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &114805105582916487
 GameObject:
   m_ObjectHideFlags: 0
