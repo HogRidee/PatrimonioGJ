@@ -33,7 +33,7 @@ public class Player01 : Player_Movement
         float hJoy = Input.GetAxisRaw("Horizontal01_Joystick");
         float vJoy = Input.GetAxisRaw("Vertical01_Joystick");
 
-        // Detectar qué se usó recientemente
+        // Detectar quï¿½ se usï¿½ recientemente
         if (Mathf.Abs(hKey) > 0.1f || Mathf.Abs(vKey) > 0.1f)
             currentControlMethod = ControlMethod.Keyboard;
         else if (Mathf.Abs(hJoy) > 0.1f || Mathf.Abs(vJoy) > 0.1f)
@@ -67,7 +67,7 @@ public class Player01 : Player_Movement
         }
 
         if (this.CanMove)
-            transform.position += new Vector3(this.HorizontalMove, this.VerticalMove, 0.0f) * Time.fixedDeltaTime * this.RunSpeedHorizontal;
+            base._rigidbody2D.linearVelocity = _movementDirection* this.RunSpeedHorizontal;
     }
 
     protected override void AddPointsScore(int n)

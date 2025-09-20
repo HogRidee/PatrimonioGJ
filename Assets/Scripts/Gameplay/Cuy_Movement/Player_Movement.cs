@@ -8,7 +8,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class Player_Movement : MonoBehaviour
 {
     private Animator _animator;
-    private Rigidbody2D _rigidbody2D;
+    protected Rigidbody2D _rigidbody2D;
     private AudioSource _audioSource;
     private SpriteRenderer _spriteRenderer;
     [Header ("Movement")] 
@@ -86,6 +86,9 @@ public class Player_Movement : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _num_Steps = false;
+
+        _rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        _rigidbody2D.interpolation = RigidbodyInterpolation2D.Interpolate;
         //MakeFaster();
         //MakeIntangible();
     }
