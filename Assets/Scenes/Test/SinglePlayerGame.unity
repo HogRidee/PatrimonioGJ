@@ -26056,7 +26056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7804160207008952026, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: _multiplySpeedPowerUp
-      value: 1.7
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 7961964564446115153, guid: bf53ba4b73a27cb4389716c6b340e389, type: 3}
       propertyPath: m_LocalPosition.x
